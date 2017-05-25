@@ -1,5 +1,4 @@
 ﻿(function () {
-
     var app = angular.module("app");
 
     app.directive("ctFooter", function () {
@@ -16,7 +15,5 @@
                 });
             }
         }
-
     });
-
 }());

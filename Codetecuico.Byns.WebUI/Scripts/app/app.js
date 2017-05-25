@@ -725,12 +725,11 @@
             restrict: "A",
             scope: {},
             transclude: true,
-            templateUrl: "/app/shared/header.html",
+            templateUrl: "/app/shared/header.html"
         }
     });
 }());
 (function () {
-
     var app = angular.module("app");
 
     app.directive("ctFooter", function () {
@@ -747,11 +746,8 @@
                 });
             }
         }
-
     });
-
 }());
-
 (function () {
 
     var app = angular.module("app");
@@ -834,20 +830,15 @@
 }());
 
 (function () {
-
     var app = angular.module("app");
 
     app.directive("loadingIndicator", function () {
         return {
             scope: {},
-            templateUrl: "/app/shared/loadingIndicator.html",
-           
+            templateUrl: "/app/shared/loadingIndicator.html"
         }
-
     });
-
 }());
-
 (function () {
 
     var dialogService = function ($uibModal) {

@@ -6,7 +6,7 @@
             restrict: "A",
             scope: {},
             transclude: true,
-            templateUrl: "/app/shared/header.html",
+            templateUrl: "/app/shared/header.html"
         }
     });
 }());
