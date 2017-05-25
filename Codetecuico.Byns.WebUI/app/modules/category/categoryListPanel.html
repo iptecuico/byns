@@ -1,0 +1,12 @@
+﻿<div class="row ct-vpad5">
+    <span class="col-xs-6 ct-text-header">Categories</span>
+    <span class="col-xs-6 glyphicon glyphicon-stats text-right"></span>
+</div>
+<div class="row" ng-repeat="c in categories | orderBy:categorySortOrder">
+    <div class="col-xs-6"><a class="ct-indent10" href="" ng-click="addCatFilter(c.name)">{{ c.name }}</a></div>
+    <div class="col-xs-6 ct-info-count text-right">{{c.itemCount | number}}</div>
+</div>
+<div class="col-xs-12 text-center">
+    <a href="">Show all</a>
+    <div class="ct-divider"></div>
+</div>

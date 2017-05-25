@@ -1,0 +1,54 @@
+﻿<div class="row">
+    <div class="col-sm-9 col-sm-push-3">
+
+        <a class="btn btn-default" ui-sref="home">&laquo; Back</a>
+        <br /><br />
+
+        <div class="panel panel-default">
+            <div class="panel-heading">{{item.name}}</div>
+            <div class="panel-body">
+                <div class="container-fluid">
+                    <div class="item-card-details-img"><img class="img-responsive" ng-src="{{ item.image }}" /></div>
+
+                    <table class="table">
+                        <tr>
+                            <td class="ct-table-label">Item Name</td>
+                            <td class="ct-table-value">{{ item.name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="ct-table-label">Description</td>
+                            <td class="ct-table-value">{{ item.description }}</td>
+                        </tr>
+                        <tr>
+                            <td class="ct-table-label">Category</td>
+                            <td class="ct-table-value">{{ item.category }}</td>
+                        </tr>
+                        <tr>
+                            <td class="ct-table-label">Condition</td>
+                            <td class="ct-table-value">{{ item.condition }}</td>
+                        </tr>
+                        <tr>
+                            <td class="ct-table-label">Price</td>
+                            <td class="ct-table-value">{{ item.price | currency: item.currency + " " }}</td>
+                        </tr>
+                        <tr ng-show="!!item.stockCount">
+                            <td class="ct-table-label">Stock</td>
+                            <td class="ct-table-value">{{ item.stockCount }}</td>
+                        </tr>
+                    </table>
+                    <div user-card-with-contacts user="item.user"></div>
+                    <p class="icd-date">Posted on {{ item.datePosted | date: "medium" }}</p>
+                </div>
+                <div>
+                    <div class="pull-left">
+                        <a href="#" class="btn btn-default">{{ item.starCount }} <span class="glyphicon glyphicon-star-empty"></span></a>
+                    </div>
+                    <div class="pull-right">
+                        <a href="" class="btn btn-primary" data-backdrop="static" data-keyboard="false"><span class="glyphicon glyphicon-envelope"></span> <span class="hidden-xs">Contact seller via mail</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div comment-disqus url="'item' + item.id" id="'item' + item.id"></div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+﻿<div class="item-filter animate-show ng-hide" ng-show="!!filterList[0].name">
+
+    <span>Filters:</span>
+    <button class="btn btn-default btn-sm" title="click to remove" ng-repeat="f in filterList" ng-click="removeFilter(f)">
+        <span class="glyphicon glyphicon-remove"></span>
+        {{ f.name + ': ' + f.value }}
+    </button>
+
+</div>

@@ -1,0 +1,16 @@
+﻿<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="pull-left">
+            <p>{{item.name}}</p>
+            <h6>{{item.description}}</h6>
+            <h6>
+                {{item.currency}} {{item.price | number:2}}
+                <span ng-if="item.category">| {{ item.category }}</span>
+                <span ng-if="item.condition">| {{ item.condition }}</span>
+            </h6> 
+        </div>
+        <div class="pull-right">
+            <ng-transclude></ng-transclude>
+        </div>
+    </div>
+</div>

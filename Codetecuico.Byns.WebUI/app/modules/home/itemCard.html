@@ -1,0 +1,16 @@
+﻿<div class="item-card col-xs-12 col-sm-4 col-md-3">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="item-card-img"><img class="img-responsive" ng-src="{{ item.image }}" /></div>
+            <div class="item-card-title">{{ item.name }}</div>
+            <div class="item-card-subinfo" ng-show="showUserInfo">
+                <p><span class="glyphicon glyphicon-time"></span>1 min ago</p>
+                <p><span class="glyphicon glyphicon-user"></span>{{ item.username }}</p>
+            </div>
+        </div>
+        <div class="panel-footer">
+            {{ item.price | currency: item.currency + " " }}
+            <div class="pull-right item-card-like">{{ item.starCount }} <span class="glyphicon glyphicon-star-empty"></span></div>
+        </div>
+    </div>
+</div>

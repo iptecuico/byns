@@ -1,0 +1,14 @@
+﻿<div class="row">
+    <div class="col-sm-6">
+        <div>
+            <img ng-src="{{vm.profile.image}}" err-src="" class="img-rounded img-responsive img-150" />
+            <h3 class="text-left">{{vm.profile.username}}</h3>
+            <p ng-hide="!vm.profile.lastName"><span class="glyphicon glyphicon-user"></span> {{vm.profile.firstName + ' ' + vm.profile.lastName }}</p>
+            <p><span class="glyphicon glyphicon-envelope"></span> {{vm.profile.email}}</p>
+            <p ng-hide="!vm.profile.personalWebsite"><span class="glyphicon glyphicon-link"></span> <a href="{{vm.profile.personalWebsite}}" target="_blank">{{vm.profile.personalWebsite}}</a></p>
+            <p><span class="glyphicon glyphicon-time"></span> Registered on {{vm.profile.dateRegistered | date: "mediumDate"}}</p>
+            <a ui-sref="user.edit" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+            <br />
+        </div>
+    </div>
+</div>

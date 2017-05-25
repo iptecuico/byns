@@ -1,0 +1,24 @@
+﻿<div class="row">
+    <div class="col-xs-6">
+        <div class="input-group input-group">
+            <input class="form-control" type="search" placeholder="Search by name, description" ng-model="vm.filterText" ui-keypress="{'enter' : 'vm.getList()'}"/>
+            <span class="input-group-btn">
+                <button id="bSearch" class="btn btn-default" ng-click="vm.search()"><i class="glyphicon glyphicon-search"></i></button>
+            </span>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <button class="btn btn-success pull-right" ng-click="vm.add()"><i class="glyphicon glyphicon-plus"></i> New Item</button>
+    </div>
+</div>
+<p />
+<loading-indicator ng-if="!vm.isLoadingComplete"></loading-indicator>
+<div list-card ng-repeat="i in vm.items" item="i">
+    <button class="btn btn-default" ng-click="vm.edit(i)">
+        <span class="glyphicon glyphicon-edit"></span>
+    </button>
+    <button class="btn btn-default" ng-click="vm.delete(i)">
+        <span class="glyphicon glyphicon-trash"></span>
+    </button>
+</div>
+<ul style="margin:0px" uib-pagination ng-if="vm.isLoadingComplete" total-items="vm.recordCount" ng-model="vm.pageNumber" items-per-page="vm.pageSize" max-size="5" class="pagination" boundary-links="true" force-ellipses="true" ng-change="vm.pageChanged()"></ul>

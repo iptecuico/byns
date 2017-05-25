@@ -1,0 +1,17 @@
+﻿<div class="modal-header">
+    <b>{{vm.prop.title}}</b>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <p>
+            {{vm.prop.message}}
+        </p>
+        <p ng-if="vm.prop.data">
+            <i>- {{vm.prop.data}}</i>
+        </p>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" ng-class="{'btn-danger':vm.prop.action == 'delete'}" ng-click="vm.ok()">{{vm.prop.buttons[0]}}</button>
+    <button class="btn btn-default" ng-click="vm.cancel()">{{vm.prop.buttons[1]}}</button>
+</div>

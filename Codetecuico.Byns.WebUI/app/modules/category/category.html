@@ -1,0 +1,15 @@
+﻿
+<a class="btn btn-default" ui-sref="item">&laquo; Back to home</a>
+<hr />
+<div class="row">
+    <div class="col-sm-3 hidden-xs">
+        <div category-list-panel></div>
+    </div>
+    <div class="col-sm-9">
+        <div>
+            <div item-search-box items="items" item-count="itemCount"></div>
+            <h4>{{ categoryName | uppercase }} <small>({{ itemCount }} results)</small></h4>
+            <div class="ct-row5" item-card ng-repeat="i in items" item="i" show-user-info="true"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+﻿<div class="row">
+
+    <div class="col-sm-3">
+        <div category-list-panel items="items" item-count="itemCount"></div>
+    </div>
+
+    <div class="col-sm-9">
+        <div item-search-box items="items" item-count="itemCount"></div>
+
+        <div item-search-filters items="items" item-count="itemCount"></div>
+
+        <div class="row ct-vpad5">
+            <div class="col-xs-6 ct-text-header ct-vpad5">Showing {{ itemCount }} result</div>
+            <div class="col-xs-6 btn-group text-right">
+                <div item-sort-box items="items" item-count="itemCount"></div>
+            </div>
+        </div>
+
+        <div class="ct-row5">
+            <loading-indicator ng-if="!isLoadingComplete"></loading-indicator>
+            <div item-card ng-repeat="i in items" item="i" show-user-info=true></div>
+        </div>
+    </div>
+
+</div>

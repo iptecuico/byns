@@ -1,0 +1,96 @@
+﻿[
+  {
+    "id": 1,
+    "name": "John Maxwell",
+    "description": "21 Irrefutable Laws of Leadership by John Maxwell. Follow them and they will follow you.",
+    "currency": "Php",
+    "price": 899.90,
+    "category": "book",
+    "condition": "brand new",
+    "user": {
+      "userId": "walmart",
+      "image": "http://i.forbesimg.com/media/lists/companies/wal-mart-stores_416x416.jpg",
+      "mobileNumber": "+63917-799-9999"
+    },
+    "image": "https://static4.koorong.com/images/p/12/cap/c/0785289356.jpg",
+    "starCount": 23,
+    "datePosted": "2016-06-15T15:37:08Z",
+    "stockCount": 2,
+    "isSold": false,
+    "status": "active"
+  },
+  {
+    "id": 2,
+    "name": "Read Person Like a Book",
+    "description": "How to read a person like a book by Geral I. Nierenberg and Henry H. Calero",
+    "currency": "Php",
+    "price": 299.50,
+    "category": "book",
+    "condition": "brand new",
+    "user": {
+      "userId": "amazon",
+      "image": "https://lh4.ggpht.com/jEV6nsNv-638GnXkiO5Cfk6zF5lKZCZuWdOtmlL_7PXR79vgteOIHcNDPhNYqGC7dzg=w300",
+      "mobileNumber": "+63917-799-9999"
+    },
+    "image": "http://kingofwallpapers.com/lake/lake-002.jpg",
+    "starCount": 10,
+    "datePosted": "2016-06-21T15:37:08Z",
+    "status": "active"
+  },
+  {
+    "id": 3,
+    "name": "Start a Conversation and Make Friends",
+    "description": "How to start a conversation and make friends by Don Gabor",
+    "currency": "Php",
+    "price": 699.75,
+    "category": "book",
+    "condition": "2nd hand",
+    "user": {
+      "userId": "ebay",
+      "image": "https://d13yacurqjgara.cloudfront.net/users/49906/screenshots/818732/ebay.png",
+      "mobileNumber": "+63917-799-9999"
+    },
+    "image": "https://www.getabstract.com/abstractData/flashFile/how-to-start-a-conversation-and-make-friends-gabor-en-9501_200x0.jpg",
+    "starCount": 5,
+    "datePosted": "2016-07-07T15:37:08Z",
+    "stockCount": 3,
+    "isSold": false,
+    "status": "active"
+  },
+  {
+    "id": 4,
+    "name": "Harry Potter",
+    "description": "Harry potter and the sorcerer stone",
+    "currency": "Php",
+    "price": 350.50,
+    "category": "car",
+    "condition": "2nd hand",
+    "user": {
+      "userId": "amazon",
+      "image": "https://lh4.ggpht.com/jEV6nsNv-638GnXkiO5Cfk6zF5lKZCZuWdOtmlL_7PXR79vgteOIHcNDPhNYqGC7dzg=w300",
+      "mobileNumber": "+63917-799-9999"
+    },
+    "image": "https://img.buzzfeed.com/buzzfeed-static/static/2014-07/30/12/enhanced/webdr02/grid-cell-21422-1406739279-4.jpg",
+    "starCount": 12,
+    "datePosted": "2016-03-02T15:37:08Z",
+    "status": "draft"
+  },
+  {
+    "id": 5,
+    "name": "Hulk",
+    "description": "Marvel history",
+    "currency": "Php",
+    "price": 499.00,
+    "category": "shirt",
+    "condition": "brand new",
+    "user": {
+      "userId": "national bookstore",
+      "image": "http://globalnation.inquirer.net/files/2013/02/national-bookstore-logo.jpg",
+      "mobileNumber": "+63917-799-9999"
+    },
+    "image": "http://theawesomer.com/photos/2009/12/122909_marvel_1.jpg",
+    "starCount": 5,
+    "datePosted": "2016-04-09T15:37:08Z",
+    "status": "active"
+  }
+]

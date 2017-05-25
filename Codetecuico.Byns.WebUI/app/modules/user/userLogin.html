@@ -1,0 +1,23 @@
+﻿<div ng-hide="vm.auth.isAuthenticated">
+    <a class="btn btn-default navbar-btn" ng-click="vm.login()">Log in</a>
+</div>
+
+<div ng-hide="!vm.auth.isAuthenticated">
+    
+    <div class="btn-group navbar-btn">
+        <button type="button" class="btn btn-default" ng-click="vm.goToProfile()">
+            <img ng-hide="!vm.userProfile.picture" ng-src="{{vm.userProfile.picture}}" alt="userProfile.nickname" class="img-circle ct-btn-img" /> {{vm.userProfile.name}}
+        </button>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a ui-sref="user.profile">My profile</a></li>
+            <li><a ui-sref="item.list">Item Management</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="" ng-click="vm.logout()">Logout</a></li>
+        </ul>
+    </div>
+
+</div>

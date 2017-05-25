@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DC41E801-2FE7-4086-93D3-F0E908473A0E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Codetecuico.Byns.WebUI</RootNamespace>
+    <AssemblyName>Codetecuico.Byns.WebUI</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\modules\3_authentication\authenticationModule.js" />
+    <Content Include="app\modules\3_authentication\ctUser.js" />
+    <Content Include="app\modules\3_authentication\routeAuthHandlerService.js" />
+    <Content Include="app\modules\7_core\appService.js" />
+    <Content Include="app\modules\9_common\apiService.js" />
+    <Content Include="app\modules\item\itemModalService.js" />
+    <Content Include="app\shared\ctFormInputDirective.js" />
+    <Content Include="app\shared\dialog\confirm.html" />
+    <Content Include="app\shared\dialog\dialogController.js" />
+    <Content Include="app\shared\dialog\dialogService.js" />
+    <Content Include="app\shared\imageResolver.js" />
+    <Content Include="app\shared\mainLoadingIndicator.html" />
+    <Content Include="app\shared\mainLoadingIndicatorDirective.js" />
+    <Content Include="android-chrome-192x192.png" />
+    <Content Include="android-chrome-256x256.png" />
+    <Content Include="apple-touch-icon-120x120.png" />
+    <Content Include="apple-touch-icon-152x152.png" />
+    <Content Include="apple-touch-icon-180x180.png" />
+    <Content Include="apple-touch-icon-60x60.png" />
+    <Content Include="apple-touch-icon-76x76.png" />
+    <Content Include="apple-touch-icon.png" />
+    <Content Include="browserconfig.xml" />
+    <Content Include="favicon-16x16.png" />
+    <Content Include="favicon-32x32.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="mstile-150x150.png" />
+    <Content Include="safari-pinned-tab.svg" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
+    <Content Include="packages.config" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="Scripts\angular-ui\ui-utils-ieshiv.js" />
+    <Content Include="Scripts\angular-ui\ui-utils-ieshiv.min.js" />
+    <Content Include="Scripts\angular-ui\ui-utils.js" />
+    <Content Include="Scripts\angular-ui\ui-utils.min.js" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\app.min.js">
+      <DependentUpon>app.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\auth0\lock.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Content\style\_input.less" />
+    <Content Include="Content\style\_toastr.less" />
+    <Content Include="Content\style\_bootstrap.less" />
+    <Content Include="Content\style\_footer.less" />
+    <Content Include="Content\style\_unknown.less" />
+    <Content Include="Content\style\_loadingIndicator.less" />
+    <None Include="bundleconfig.json" />
+    <Content Include="manifest.json" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\modules\1_logger\loggerModule.js" />
+    <Content Include="app\modules\1_logger\loggerService.js" />
+    <Content Include="app\modules\2_exception\genericErrorHandlerConfig.js" />
+    <Content Include="app\modules\2_exception\exceptionModule.js" />
+    <Content Include="app\modules\2_exception\routeErrorHandlerService.js" />
+    <Content Include="app\modules\7_core\appConfigAuth.js" />
+    <Content Include="app\modules\7_core\appModule.js" />
+    <Content Include="app\modules\7_core\appConfigRoute.js" />
+    <Content Include="app\modules\7_core\appRun.js" />
+    <Content Include="app\modules\7_core\constantService.js" />
+    <Content Include="app\modules\category\category.html" />
+    <Content Include="app\modules\category\categoryController.js" />
+    <Content Include="app\modules\category\categoryDirective.js" />
+    <Content Include="app\modules\category\categoryListPanel.html" />
+    <Content Include="app\modules\category\categoryService.js" />
+    <Content Include="app\modules\home\home.html" />
+    <Content Include="app\modules\home\homeController.js" />
+    <Content Include="app\modules\home\itemCard.html" />
+    <Content Include="app\modules\home\itemCardDetails.html" />
+    <Content Include="app\modules\home\itemCardDetailsController.js" />
+    <Content Include="app\modules\home\itemCardDirective.js" />
+    <Content Include="app\modules\itemSearch\itemSearchBox.html" />
+    <Content Include="app\modules\itemSearch\itemSearchBoxDirective.js" />
+    <Content Include="app\modules\itemSearch\itemSearchFilters.html" />
+    <Content Include="app\modules\itemSearch\itemSearchFiltersDirective.js" />
+    <Content Include="app\modules\item\editItem.html" />
+    <Content Include="app\modules\item\editItemController.js" />
+    <Content Include="app\modules\item\item.html" />
+    <Content Include="app\modules\item\itemController.js" />
+    <Content Include="app\modules\item\itemHelp.html" />
+    <Content Include="app\modules\item\itemService.js" />
+    <Content Include="app\modules\item\itemSortBox.html" />
+    <Content Include="app\modules\item\itemSortBoxDirective.js" />
+    <Content Include="app\modules\item\list.html" />
+    <Content Include="app\modules\item\listCard\listCard.html" />
+    <Content Include="app\modules\item\listCard\listCardDirective.js" />
+    <Content Include="app\modules\item\listController.js" />
+    <Content Include="app\modules\item\postItem.html" />
+    <Content Include="app\modules\item\postItemController.js" />
+    <Content Include="app\modules\user\user.html" />
+    <Content Include="app\modules\user\userController.js" />
+    <Content Include="app\modules\user\userLogin.html" />
+    <Content Include="app\modules\user\userLoginDirective.js" />
+    <Content Include="app\modules\user\userProfile.html" />
+    <Content Include="app\modules\user\userProfileController.js" />
+    <Content Include="app\modules\user\userProfileEdit.html" />
+    <Content Include="app\modules\user\userProfileEditController.js" />
+    <Content Include="app\modules\user\userService.js" />
+    <Content Include="app\shared\comment.html" />
+    <Content Include="app\shared\commentDirective.js" />
+    <Content Include="app\shared\datepickerDirective.js" />
+    <Content Include="app\shared\footer.html" />
+    <Content Include="app\shared\footerDirective.js" />
+    <Content Include="app\shared\header.html" />
+    <Content Include="app\shared\headerDirective.js" />
+    <Content Include="app\shared\loadingIndicator.html" />
+    <Content Include="app\shared\loadingIndicatorDirective.js" />
+    <Content Include="app\shared\mainController.js" />
+    <Content Include="app\shared\menu\menu.html" />
+    <Content Include="app\shared\menu\menuDirective.js" />
+    <Content Include="app\shared\menu\menuItem.html" />
+    <Content Include="app\shared\menu\menuItemDirective.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\loading-indicator.gif" />
+    <Content Include="Content\style\main.css">
+      <DependentUpon>main.less</DependentUpon>
+    </Content>
+    <Content Include="Content\style\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="index.html" />
+    <Content Include="Scripts\angular-animate.js" />
+    <Content Include="Scripts\angular-animate.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-resource.js" />
+    <Content Include="Scripts\angular-resource.min.js" />
+    <Content Include="Scripts\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui-router.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Scripts\auth0\angular-jwt.js" />
+    <Content Include="Scripts\auth0\angular-storage.js" />
+    <Content Include="Scripts\auth0\auth0-angular-4.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="Scripts\angular-resource.min.js.map" />
+    <Content Include="data\item\items.json" />
+    <Content Include="Content\style\_animate.less" />
+    <Content Include="Content\style\_body.less" />
+    <Content Include="Content\style\_button.less" />
+    <Content Include="Content\style\_image.less" />
+    <Content Include="Content\style\_item.less" />
+    <Content Include="Content\style\main.less" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>21135</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:3802/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

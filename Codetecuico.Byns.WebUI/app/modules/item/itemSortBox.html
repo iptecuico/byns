@@ -1,0 +1,9 @@
+﻿<div class="btn-group item-sort">
+    <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sort by: <b ng-bind="currentSortOrder.name"></b> <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-right ct-nopad">
+        <li class="ct-sort-header">Sort Options:</li>
+        <li ng-repeat="s in sortOptions"><a href="" ng-click="applySort(s)"><!--<span class="glyphicon glyphicon-check" ng-hide="{{ currentSortOrder.name != s.name }}"></span>-->{{ s.name }}</a></li>
+    </ul>
+</div>

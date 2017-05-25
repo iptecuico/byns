@@ -1,0 +1,76 @@
+[
+  {
+    "outputFileName": "Scripts/app/app.js",
+    "inputFiles": [
+
+      //Logger
+      "app/modules/1_logger/loggerModule.js",
+      "app/modules/1_logger/loggerService.js",
+
+      //Exception
+      "app/modules/2_exception/exceptionModule.js",
+      "app/modules/2_exception/genericErrorHandlerConfig.js",
+      "app/modules/2_exception/routeErrorHandlerService.js",
+
+      //Authentication
+      "app/modules/3_authentication/authenticationModule.js",
+      "app/modules/3_authentication/ctUser.js",
+      "app/modules/3_authentication/routeAuthHandlerService.js",
+
+      //Core
+      "app/modules/7_core/appModule.js",
+      "app/modules/7_core/constantService.js",
+      "app/modules/7_core/appConfigRoute.js",
+      "app/modules/7_core/appConfigAuth.js",
+      "app/modules/7_core/appRun.js",
+      "app/modules/7_core/appService.js",
+
+      //Common
+      "app/modules/9_common/apiService.js",
+
+      //Shared controls
+      "app/shared/mainController.js",
+      "app/shared/headerDirective.js",
+      "app/shared/footerDirective.js",
+      "app/shared/menu/menuDirective.js",
+      "app/shared/menu/menuItemDirective.js",
+      "app/shared/datepickerDirective.js",
+      "app/shared/commentDirective.js",
+      "app/shared/loadingIndicatorDirective.js",
+      "app/shared/dialog/dialogService.js",
+      "app/shared/dialog/dialogController.js",
+      "app/shared/imageResolver.js",
+      "app/shared/ctFormInputDirective.js",
+      "app/shared/mainLoadingIndicatorDirective.js",
+
+      //Home
+      "app/modules/home/homeController.js",
+      "app/modules/home/itemCardDirective.js",
+      "app/modules/home/itemCardDetailsController.js",
+
+      //User
+      "app/modules/user/userService.js",
+      "app/modules/user/userController.js",
+      "app/modules/user/userLoginDirective.js",
+      "app/modules/user/userProfileController.js",
+      "app/modules/user/userProfileEditController.js",
+
+      //Item
+      "app/modules/item/itemService.js",
+      "app/modules/item/itemController.js",
+      "app/modules/item/itemSortBoxDirective.js",
+      "app/modules/item/listController.js",
+      "app/modules/item/itemModalService.js",
+      "app/modules/item/postItemController.js",
+      "app/modules/item/editItemController.js",
+      "app/modules/item/listCard/listCardDirective.js",
+      "app/modules/itemSearch/itemSearchFiltersDirective.js",
+      "app/modules/itemSearch/itemSearchBoxDirective.js",
+
+      //Category
+      "app/modules/category/categoryService.js",
+      "app/modules/category/categoryController.js",
+      "app/modules/category/categoryDirective.js"
+    ]
+  }
+]

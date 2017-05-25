@@ -1,0 +1,59 @@
+﻿<div class="modal-header">
+    <b>New Item</b>
+</div>
+<form name="itemPostForm" class="form-horizontal">
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div ct-form-input>
+                <label for="image" class="col-sm-2">Image</label>
+                <div class="col-sm-10">
+                    <input type="text" id="image" placeholder="Image URL" ng-model="vm.item.image" required>
+                </div>
+            </div>
+            <div ct-form-input>
+                <label for="name" class="col-sm-2">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" id="name" placeholder="Name" ng-model="vm.item.name" required>
+                </div>
+            </div>
+            <div ct-form-input>
+                <label for="description" class="col-sm-2">Description</label>
+                <div class="col-sm-10">
+                    <input type="text" id="description" placeholder="Description" ng-model="vm.item.description" required>
+                </div>
+            </div>
+            <div ct-form-input>
+                <label for="price" class="col-sm-2">Price</label>
+                <div class="col-sm-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control" style="width: 120px" id="price" placeholder="Price" ng-model="vm.item.price" required>
+                        <span class="input-group-addon" style="width: 0px; padding-left: 0px; padding-right: 0px; border: none;"></span>
+                        <select class="form-control" style="width: 80px" ng-init="vm.item.currency ? 'Php' : vm.item.currency" ng-model="vm.item.currency" ng-options="currency.name as currency.name for currency in vm.currencies"></select>
+                    </div>
+                </div>
+            </div>
+            <div ct-form-input>
+                <label for="category" class="col-sm-2">Category</label>
+                <div class="col-sm-10">
+                    <input type="text" id="category" placeholder="Category" ng-model="vm.item.category" required>
+                </div>
+            </div>
+            <div ct-form-input>
+                <label for="condition" class="col-sm-2">Condition</label>
+                <div class="col-sm-10">
+                    <input type="text" id="condition" placeholder="Condition" ng-model="vm.item.condition" required>
+                </div>
+            </div>
+            <div ct-form-input>
+                <label for="remarks" class="col-sm-2">Remarks</label>
+                <div class="col-sm-10">
+                    <input type="text" id="remarks" placeholder="Remarks" ng-model="vm.item.remarks">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-success" ng-disabled="itemPostForm.$invalid" value="Save" ng-click="vm.save(vm.item)" />
+        <button type="button" class="btn btn-default" ng-click="vm.cancel()">Cancel</button>
+    </div>
+</form>
