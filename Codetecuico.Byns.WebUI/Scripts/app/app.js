@@ -941,21 +941,14 @@
 }());
 
 (function () {
-
     angular.module("app")
             .directive("mainLoadingIndicator", function () {
                 return {
                     scope: {},
                     templateUrl: "/app/shared/mainLoadingIndicator.html",
-                    controller: function () {
-
-                    }
                 }
-
             });
-
 }());
-
 (function () {
 
     var homeController = function ($scope, itemService, appInfo) {
@@ -1630,7 +1623,6 @@
 
 }());
 (function () {
-
     var app = angular.module("app");
 
     app.directive("listCard", function () {
@@ -1641,15 +1633,9 @@
             },
             templateUrl: "/app/modules/item/listCard/listCard.html",
             controllerAs: "vm",
-            controller: function () {
-
-            }
         }
-
     });
-
 }());
-
 (function () {
 
     var app = angular.module("app");
