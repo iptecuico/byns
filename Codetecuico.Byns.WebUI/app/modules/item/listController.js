@@ -1,4 +1,5 @@
 ﻿(function () {
+    "use strict";
 
     var app = angular.module("app");
 
@@ -9,7 +10,7 @@
 
         vm.recordCount = 0;
         vm.pageNumber = 1;
-        vm.pageSize = 5; 
+        vm.pageSize = 5;
 
         vm.getList = function () {
             logger.debug.info(vm.filterText);
@@ -43,7 +44,6 @@
         };
 
         vm.edit = function (item) {
-
             var itemCopy = angular.copy(item);
 
             itemModalService.edit(itemCopy)
@@ -89,10 +89,8 @@
         vm.pageChanged = function () {
             vm.getList();
         };
-
     };
 
     listController.$inject = ["itemService", "userService", "itemModalService", "dialogService", "logger"];
     app.controller("listController", listController);
-
 }());

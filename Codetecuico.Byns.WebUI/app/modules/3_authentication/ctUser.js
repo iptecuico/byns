@@ -1,47 +1,48 @@
 ﻿(function () {
+    "use strict";
 
     var ctUser = function (store, auth, jwtHelper, $q, logger) {
-        var dbProfileKey = 'dbProfile';
-        var profileKey = 'profile';
-        var tokenKey = 'token';
-        var refreshTokenKey = 'refreshToken';
+        var dbProfileKey = "dbProfile";
+        var profileKey = "profile";
+        var tokenKey = "token";
+        var refreshTokenKey = "refreshToken";
 
         var setToken = function (token) {
             return store.set(tokenKey, token);
-        }
+        };
 
         var setDbProfile = function (profile) {
             return store.set(dbProfileKey, profile);
-        }
+        };
 
         var getAuth = function () {
             return auth;
-        }
+        };
 
         var getDbProfile = function () {
             return store.get(dbProfileKey);
-        }
+        };
 
         var getProfile = function () {
             return store.get(profileKey);
-        }
+        };
 
         var getToken = function () {
             return store.get(tokenKey);
-        }
+        };
 
         var getRefreshToken = function () {
             return store.get(refreshTokenKey);
-        }
+        };
 
         var isTokenExpired = function (token) {
             return jwtHelper.isTokenExpired(token);
-        }
+        };
 
         var signIn = function () {
             var deferred = $q.defer();
 
-            auth.signin({ authParams: { scope: 'openid offline_access' } }
+            auth.signin({ authParams: { scope: "openid offline_access" } }
                         , function (profile, token, accessToken, state, refreshToken) {
                             store.set(profileKey, profile);
                             store.set(tokenKey, token);
@@ -50,7 +51,7 @@
                             var data = {
                                 profile: profile,
                                 auth: auth
-                            }
+                            };
 
                             deferred.resolve(data);
                         }, function (error) {
@@ -58,7 +59,7 @@
                         });
 
             return deferred.promise;
-        }
+        };
 
         var signOut = function () {
             auth.signout();
@@ -67,8 +68,8 @@
             store.remove(tokenKey);
             store.remove(refreshTokenKey);
 
-            store.remove('myUserProfile'); //temporary only
-        }
+            store.remove("myUserProfile"); //temporary only
+        };
 
         var authenticate = function (token) {
             if (auth.isAuthenticated === false) {
@@ -76,7 +77,7 @@
                 var profile = getProfile();
                 auth.authenticate(profile, token);
             }
-        }
+        };
 
         var refreshAndAuthenticate = function (refreshingToken, refreshToken) {
             logger.debug.info("triggered ctUser.refreshAndAuthenticate");
@@ -92,7 +93,7 @@
                                         });
             }
             return refreshingToken;
-        }
+        };
 
         var mockSignIn = function () {
             store.set(profileKey, { name: "Test User", user_id: "google-oauth2|114343767643441344703" });
@@ -122,7 +123,6 @@
 
     ctUser.$inject = ["store", "auth", "jwtHelper", "$q", "logger"];
 
-    angular.module('ctAuthentication')
-            .factory('ctUser', ctUser);
-
+    angular.module("ctAuthentication")
+            .factory("ctUser", ctUser);
 }());

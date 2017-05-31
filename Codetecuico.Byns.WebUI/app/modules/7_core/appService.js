@@ -3,8 +3,7 @@
 
     var app = angular.module("app");
 
-    var appService = function ($q, store, apiService) {
-
+    var appService = function ($q, apiService) {
         var version = "";
 
         var getVersion = function () {
@@ -19,6 +18,5 @@
         };
     };
 
-    app.factory("appService", ["$q", "store", "apiService", appService]);
-
+    app.factory("appService", ["$q", "apiService", appService]);
 }());

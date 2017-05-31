@@ -1,7 +1,5 @@
 ﻿(function () {
-
     var logger = function () {
-
         toastr.options = {
             //"debug": false,
             "positionClass": "toast-bottom-right"
@@ -10,7 +8,7 @@
             //"fadeOut": 1000,
             //"timeOut": 5000,
             //"extendedTimeOut": 1000
-        }
+        };
 
         var success = function (msg) {
             toastr.success(msg);
@@ -30,19 +28,18 @@
 
         // Developer code
         var isDebugActive = true;
-        var debugPrefix = 'DEBUG: ';
+        var debugPrefix = "DEBUG: ";
         var logToConsole = true;
 
         var setMessage = function (msg) {
             return debugPrefix + msg;
-        }
+        };
 
         var isValidLog = function (msg) {
             return (isDebugActive && msg !== "" && msg !== null);
-        }
+        };
 
         var logMessage = function (logType, msg) {
-
             if (!isValidLog(msg)) {
                 return;
             }
@@ -50,7 +47,6 @@
             var message = setMessage(msg);
 
             if (logToConsole) {
-
                 if (logType === "info")
                     console.info(message);
 
@@ -62,9 +58,7 @@
 
                 else if (logType === "error")
                     console.error(message);
-
             } else {
-
                 if (logType === "info")
                     toastr.info(message);
 
@@ -80,7 +74,6 @@
         }
 
         var debug = {
-
             info: function (msg) {
                 logMessage("info", msg);
             },
@@ -102,10 +95,8 @@
             warning: warning,
             error: error
         }
-
     }
 
-    angular.module('ctLogger')
-            .factory('logger', logger);
-
+    angular.module("ctLogger")
+            .factory("logger", logger);
 }());

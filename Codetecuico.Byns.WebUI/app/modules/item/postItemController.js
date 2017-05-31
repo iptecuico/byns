@@ -1,9 +1,9 @@
 ﻿(function () {
+    "use strict";
 
     var app = angular.module("app");
 
     var postItemController = function ($scope, $uibModalInstance, logger, itemService) {
-
         var vm = this;
 
         vm.currencies = [];
@@ -16,7 +16,6 @@
         vm.item = { currency: vm.currencies[0].name };
 
         vm.save = function (item) {
-
             item.userId = 1;
 
             itemService.save(item).then(function () {
@@ -31,15 +30,13 @@
 
         vm.cancel = function () {
             $uibModalInstance.dismiss();
-        }
+        };
 
         vm.ok = function () {
             $uibModalInstance.close();
-        }
-
+        };
     };
 
     postItemController.$inject = ["$scope", "$uibModalInstance", "logger", "itemService"];
     app.controller("postItemController", postItemController);
-
 }());

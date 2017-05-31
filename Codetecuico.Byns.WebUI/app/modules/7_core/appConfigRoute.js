@@ -1,7 +1,7 @@
 ﻿(function () {
-     
-    var routeConfig = function ($stateProvider, $urlRouterProvider) {
+    "use strict";
 
+    var routeConfig = function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
@@ -119,11 +119,10 @@
             });
 
         console.info("app.config route executed");
-    }
+    };
 
     routeConfig.$inject = ["$stateProvider", "$urlRouterProvider"];
 
     angular.module("app")
             .config(routeConfig);
-
 }());

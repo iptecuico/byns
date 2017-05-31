@@ -1,9 +1,9 @@
 ﻿(function () {
+    "use strict";
 
     var app = angular.module("app");
 
     app.directive("categoryListPanel", function () {
-
         return {
             scope: {
                 items: "=",
@@ -11,7 +11,6 @@
             },
             templateUrl: "/app/modules/category/categoryListPanel.html",
             controller: function ($scope, categoryService, itemService) {
-
                 //Category panel
                 $scope.categorySortOrder = categoryService.getSortOrder();
 
@@ -31,11 +30,8 @@
                             $scope.items = data;
                             $scope.itemCount = itemService.getItemCount();
                         }, null);
-
                 };
             }
-        }
-
+        };
     });
-
 }());

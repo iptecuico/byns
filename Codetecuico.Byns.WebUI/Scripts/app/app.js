@@ -1,12 +1,10 @@
 (function () {
+    "use strict";
 
-    angular.module('ctLogger', []);
-
+    angular.module("ctLogger", []);
 }());
 (function () {
-
     var logger = function () {
-
         toastr.options = {
             //"debug": false,
             "positionClass": "toast-bottom-right"
@@ -15,7 +13,7 @@
             //"fadeOut": 1000,
             //"timeOut": 5000,
             //"extendedTimeOut": 1000
-        }
+        };
 
         var success = function (msg) {
             toastr.success(msg);
@@ -35,19 +33,18 @@
 
         // Developer code
         var isDebugActive = true;
-        var debugPrefix = 'DEBUG: ';
+        var debugPrefix = "DEBUG: ";
         var logToConsole = true;
 
         var setMessage = function (msg) {
             return debugPrefix + msg;
-        }
+        };
 
         var isValidLog = function (msg) {
             return (isDebugActive && msg !== "" && msg !== null);
-        }
+        };
 
         var logMessage = function (logType, msg) {
-
             if (!isValidLog(msg)) {
                 return;
             }
@@ -55,7 +52,6 @@
             var message = setMessage(msg);
 
             if (logToConsole) {
-
                 if (logType === "info")
                     console.info(message);
 
@@ -67,9 +63,7 @@
 
                 else if (logType === "error")
                     console.error(message);
-
             } else {
-
                 if (logType === "info")
                     toastr.info(message);
 
@@ -85,7 +79,6 @@
         }
 
         var debug = {
-
             info: function (msg) {
                 logMessage("info", msg);
             },
@@ -107,121 +100,114 @@
             warning: warning,
             error: error
         }
-
     }
 
-    angular.module('ctLogger')
-            .factory('logger', logger);
-
+    angular.module("ctLogger")
+            .factory("logger", logger);
 }());
 (function () {
+    "use strict";
 
-    angular.module('ctException', ['ctLogger']);
-
+    angular.module("ctException", ["ctLogger"]);
 }());
 (function () {
+    "use strict";
 
     var appErrorHandler = function ($provide) {
-
-        $provide.decorator('$exceptionHandler', ['$delegate', 'logger', function ($delegate, logger) {
+        $provide.decorator("$exceptionHandler", ["$delegate", "logger", function ($delegate, logger) {
             return function (exception, cause) {
                 $delegate(exception, cause);
                 logger.debug.error(exception.message);
             };
         }]);
-
     };
 
-    appErrorHandler.$inject = ['$provide'];
+    appErrorHandler.$inject = ["$provide"];
 
-    angular.module('ctException')
+    angular.module("ctException")
             .config(appErrorHandler);
-
 }());
 (function () {
-    
-    var routeErrorHandler = function ($rootScope, $location, logger) {
+    "use strict";
 
+    var routeErrorHandler = function ($rootScope, $location, logger) {
         var start = function () {
             var handlingRouteChangeError = false;
 
-            $rootScope.$on('$stateChangeError', function (event, current) {
+            $rootScope.$on("$stateChangeError", function (event, current) {
                 if (handlingRouteChangeError) {
                     return;
                 };
 
                 handlingRouteChangeError = true;
 
-                logger.debug.error('Routing error: name = ' + current.name);
-                $location.path('/');
+                logger.debug.error("Routing error: name = " + current.name);
+                $location.path("/");
             });
         };
 
         return {
             start: start
         }
-
     };
 
-    routeErrorHandler.$inject = ['$rootScope', '$location', 'logger'];
+    routeErrorHandler.$inject = ["$rootScope", "$location", "logger"];
 
-    angular.module('ctException')
-            .factory('routeErrorHandler', routeErrorHandler);
-
+    angular.module("ctException")
+            .factory("routeErrorHandler", routeErrorHandler);
 }());
 (function () {
-     
-    angular.module('ctAuthentication', [
-                                        "auth0",
+    "use strict";
+
+    angular.module("ctAuthentication", ["auth0",
                                         "angular-storage",
-                                        "angular-jwt"
-                                      ]);
-
+                                        "angular-jwt"]);
 }());
 (function () {
+    "use strict";
 
     var ctUser = function (store, auth, jwtHelper, $q, logger) {
-        var dbProfileKey = 'dbProfile';
-        var profileKey = 'profile';
-        var tokenKey = 'token';
-        var refreshTokenKey = 'refreshToken';
+        var dbProfileKey = "dbProfile";
+        var profileKey = "profile";
+        var tokenKey = "token";
+        var refreshTokenKey = "refreshToken";
 
         var setToken = function (token) {
             return store.set(tokenKey, token);
-        }
+        };
 
         var setDbProfile = function (profile) {
             return store.set(dbProfileKey, profile);
-        }
+        };
 
         var getAuth = function () {
             return auth;
-        }
+        };
 
         var getDbProfile = function () {
             return store.get(dbProfileKey);
-        }
+        };
 
         var getProfile = function () {
             return store.get(profileKey);
-        }
+        };
 
         var getToken = function () {
             return store.get(tokenKey);
-        }
+        };
 
         var getRefreshToken = function () {
             return store.get(refreshTokenKey);
-        }
+        };
 
         var isTokenExpired = function (token) {
             return jwtHelper.isTokenExpired(token);
-        }
+        };
 
         var signIn = function () {
             var deferred = $q.defer();
 
-            auth.signin({ authParams: { scope: 'openid offline_access' } }
+            auth.signin({ authParams: { scope: "openid offline_access" } }
                         , function (profile, token, accessToken, state, refreshToken) {
                             store.set(profileKey, profile);
                             store.set(tokenKey, token);
@@ -230,7 +216,7 @@
                             var data = {
                                 profile: profile,
                                 auth: auth
-                            }
+                            };
 
                             deferred.resolve(data);
                         }, function (error) {
@@ -238,7 +224,7 @@
                         });
 
             return deferred.promise;
-        }
+        };
 
         var signOut = function () {
             auth.signout();
@@ -247,8 +233,8 @@
             store.remove(tokenKey);
             store.remove(refreshTokenKey);
 
-            store.remove('myUserProfile'); //temporary only
-        }
+            store.remove("myUserProfile"); //temporary only
+        };
 
         var authenticate = function (token) {
             if (auth.isAuthenticated === false) {
@@ -256,7 +242,7 @@
                 var profile = getProfile();
                 auth.authenticate(profile, token);
             }
-        }
+        };
 
         var refreshAndAuthenticate = function (refreshingToken, refreshToken) {
             logger.debug.info("triggered ctUser.refreshAndAuthenticate");
@@ -272,7 +258,7 @@
                                         });
             }
             return refreshingToken;
-        }
+        };
 
         var mockSignIn = function () {
             store.set(profileKey, { name: "Test User", user_id: "google-oauth2|114343767643441344703" });
@@ -302,20 +288,16 @@
 
     ctUser.$inject = ["store", "auth", "jwtHelper", "$q", "logger"];
 
-    angular.module('ctAuthentication')
-            .factory('ctUser', ctUser);
-
+    angular.module("ctAuthentication")
+            .factory("ctUser", ctUser);
 }());
-    (function () {
-
+(function () {
     var routeAuthHandler = function ($rootScope, $state, ctUser, $timeout) {
-
         var start = function () {
             var refreshingToken = null;
             var auth = ctUser.auth();
 
-            $rootScope.$on('$stateChangeStart', function (event, current) {
-
+            $rootScope.$on("$stateChangeStart", function (event, current) {
                 var token = ctUser.token();
                 var refreshToken = ctUser.refreshToken();
 
@@ -354,7 +336,6 @@
                         }
                     }
                 };
-
             });
             auth.hookEvents();
         };
@@ -362,16 +343,15 @@
         return {
             start: start
         }
-
     };
 
     routeAuthHandler.$inject = ["$rootScope", "$state", "ctUser", "$timeout"];
 
-    angular.module('ctAuthentication')
-            .factory('routeAuthHandler', routeAuthHandler);
-
+    angular.module("ctAuthentication")
+            .factory("routeAuthHandler", routeAuthHandler);
 }());
 (function () {
+    "use strict";
 
     angular.module("app", ["ui.router",
                             "ui.bootstrap",
@@ -383,9 +363,9 @@
                             "ctLogger",
                             "ctException",
                             "ctAuthentication"]);
-
 }());
 (function () {
+    "use strict";
 
     angular.module("app")
         .constant("appInfo", {
@@ -401,14 +381,14 @@
 
     angular.module("app")
         .constant("authInfo", {
-            AUTH0_DOMAIN: 'codetecuico.auth0.com',
-            AUTH0_CLIENT_ID: 'ZUCOYNwmRRiJioqUCKdoBtTI21vgFmZp'
+            AUTH0_DOMAIN: "codetecuico.auth0.com",
+            AUTH0_CLIENT_ID: "ZUCOYNwmRRiJioqUCKdoBtTI21vgFmZp"
         });
 }());
 (function () {
-     
-    var routeConfig = function ($stateProvider, $urlRouterProvider) {
+    "use strict";
 
+    var routeConfig = function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
@@ -526,18 +506,17 @@
             });
 
         console.info("app.config route executed");
-    }
+    };
 
     routeConfig.$inject = ["$stateProvider", "$urlRouterProvider"];
 
     angular.module("app")
             .config(routeConfig);
-
 }());
 (function () {
+    "use strict";
 
     var initAuth = function (authProvider, jwtInterceptorProvider, $httpProvider, jwtOptionsProvider, authInfo) {
-
         authProvider.init({
             domain: authInfo.AUTH0_DOMAIN,
             clientID: authInfo.AUTH0_CLIENT_ID//,
@@ -546,53 +525,52 @@
 
         var refreshingToken = null;
         jwtInterceptorProvider.tokenGetter = function (store, jwtHelper) {
-            var token = store.get('token');
-            //var refreshToken = store.get('refreshToken');
+            var token = store.get("token");
+            //var refreshToken = store.get("refreshToken");
             if (token) {
                 if (!jwtHelper.isTokenExpired(token)) {
-                    return store.get('token');
+                    return store.get("token");
                 } else {
-                    if (refreshingToken === null) {
-                        //refreshingToken = auth.refreshIdToken(refreshToken).then(function (idToken) {
-                        //    store.set('token', idToken);
-                        //    return idToken;
-                        //}).finally(function () {
-                        //    refreshingToken = null;
-                        //});
-                    }
+                    //if (refreshingToken === null) {
+                    //refreshingToken = auth.refreshIdToken(refreshToken).then(function (idToken) {
+                    //    store.set("token", idToken);
+                    //    return idToken;
+                    //}).finally(function () {
+                    //    refreshingToken = null;
+                    //});
+                    //}
                     return refreshingToken;
                 }
             }
-        }
+        };
 
         jwtOptionsProvider.config({
             whiteListedDomains: ["localhost", "bynsapi.azurewebsites.net"]
         });
 
-        $httpProvider.interceptors.push('jwtInterceptor');
+        $httpProvider.interceptors.push("jwtInterceptor");
         delete $httpProvider.defaults.headers.common["X-Requested-With"];
-        $httpProvider.defaults.headers.post = { 'Content-Type': 'application/json' };
-        $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-        $httpProvider.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS';
-        $httpProvider.defaults.headers.common['Accept-header'] = 'application/json';
+        $httpProvider.defaults.headers.post = { "Content-Type": "application/json" };
+        $httpProvider.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
+        $httpProvider.defaults.headers.common["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS";
+        $httpProvider.defaults.headers.common["Accept-header"] = "application/json";
 
-        console.info('app.config auth executed');
+        console.info("app.config auth executed");
     };
 
-    initAuth.$inject = ['authProvider', 'jwtInterceptorProvider', '$httpProvider', 'jwtOptionsProvider', 'authInfo'];
+    initAuth.$inject = ["authProvider", "jwtInterceptorProvider", "$httpProvider", "jwtOptionsProvider", "authInfo"];
 
     angular.module("app")
             .config(initAuth);
-
 }());
 (function () {
+    "use strict";
 
     var appConfig = function (routeErrorHandler, routeAuthHandler, logger, $rootScope, $timeout, $location, $window) {
-
-        //Redirect to HTTPS 
+        //Redirect to HTTPS
         var forceSsl = function () {
-            if ($location.protocol() !== 'https' && $location.host() === 'byns.azurewebsites.net') {
-                $window.location.href = $location.absUrl().replace('http', 'https');
+            if ($location.protocol() !== "https" && $location.host() === "byns.azurewebsites.net") {
+                $window.location.href = $location.absUrl().replace("http", "https");
             }
         };
         forceSsl();
@@ -603,39 +581,37 @@
         $rootScope.layout = {};
         $rootScope.layout.loading = false;
 
-        $rootScope.$on('$stateChangeStart', function () {
+        $rootScope.$on("$stateChangeStart", function () {
             //show loading gif
             $timeout(function () {
                 $rootScope.layout.loading = true;
             });
         });
-        $rootScope.$on('$stateChangeSuccess', function () {
+        $rootScope.$on("$stateChangeSuccess", function () {
             //hide loading gif
             $timeout(function () {
                 $rootScope.layout.loading = false;
             }, 200);
         });
-        $rootScope.$on('$stateChangeError', function () {
+        $rootScope.$on("$stateChangeError", function () {
             //hide loading gif
             $rootScope.layout.loading = false;
         });
 
-        logger.debug.info('app.run executed');
+        logger.debug.info("app.run executed");
     };
 
-    appConfig.$inject = ['routeErrorHandler', 'routeAuthHandler', 'logger', '$rootScope', '$timeout', '$location', '$window'];
+    appConfig.$inject = ["routeErrorHandler", "routeAuthHandler", "logger", "$rootScope", "$timeout", "$location", "$window"];
 
     angular.module("app")
             .run(appConfig);
-
 }());
 (function () {
     "use strict";
 
     var app = angular.module("app");
 
-    var appService = function ($q, store, apiService) {
-
+    var appService = function ($q, apiService) {
         var version = "";
 
         var getVersion = function () {
@@ -650,37 +626,34 @@
         };
     };
 
-    app.factory("appService", ["$q", "store", "apiService", appService]);
-
+    app.factory("appService", ["$q", "apiService", appService]);
 }());
 (function () {
-
     var apiService = function ($resource, $location) {
-
         var baseUrlDev = "http://localhost:14303/api";
         var baseUrlProd = "https://bynsapi.azurewebsites.net/api";
         var baseUrl = baseUrlProd;
 
-        if ($location.host() === 'byns.azurewebsites.net') {
+        if ($location.host() === "byns.azurewebsites.net") {
             baseUrl = baseUrlProd;
         } else {
             baseUrl = baseUrlDev;
         }
-        
+
         return {
             app: $resource(baseUrl + "/app/version", null, {
-                'getVersion': { method: 'GET' }
+                "getVersion": { method: "GET" }
             }),
             item: $resource(baseUrl + "/item", null, {
-                'update': { method: 'PUT' },
-                'delete': {
-                    method: 'DELETE',
+                "update": { method: "PUT" },
+                "delete": {
+                    method: "DELETE",
                     params: {
                         id: "@id"
                     }
                 },
-                'search': {
-                    method: 'GET',
+                "search": {
+                    method: "GET",
                     params: {
                         pageNumber: "@pageNumber",
                         pageSize: "@pageSize",
@@ -689,12 +662,12 @@
                 }
             }),
             user: $resource(baseUrl + "/user", null, {
-                'me': {
+                "me": {
                     url: baseUrl + "/user/me",
-                    method: 'GET'
+                    method: "GET"
                 },
-                'get': { method: 'GET' },
-                'update': { method: 'PUT' }
+                "get": { method: "GET" },
+                "update": { method: "PUT" }
             })
         }
     }
@@ -703,7 +676,6 @@
 
     angular.module("app")
             .factory("apiService", apiService);
-
 }());
 (function () {
 
@@ -950,6 +922,7 @@
             });
 }());
 (function () {
+    "use strict";
 
     var homeController = function ($scope, itemService, appInfo) {
         $("title").text("All items" + appInfo.APP_NAME);
@@ -962,7 +935,7 @@
 
         //Populating item list
         $scope.getItems = function () {
-            itemService.search(1,50,"")
+            itemService.search(1, 50, "")
                 .then(function (data) {
                     $scope.items = angular.copy(data.data);
                     itemService.setItems($scope.items);
@@ -972,33 +945,29 @@
         };
 
         $scope.getItems(currentSortOrder);
-
     };
 
     homeController.$inject = ["$scope", "itemService", "appInfo"];
     angular.module("app")
             .controller("homeController", homeController);
-
 }());
 (function () {
+    "use strict";
 
     var app = angular.module("app");
 
-    app.directive('itemCard', function () {
+    app.directive("itemCard", function () {
         return {
             templateUrl: "/app/modules/home/itemCard.html",
             scope: {
                 item: "=",
                 showUserInfo: "="
-            },
-            controller: function () {
-
             }
-        }
+        };
     });
-
 }());
 (function () {
+    "use strict";
 
     var app = angular.module("app");
 
@@ -1013,7 +982,6 @@
     };
 
     app.controller("itemCardDetailsController", ["$scope", "$stateParams", "itemService", itemCardDetailsController]);
-
 }());
 (function () {
     "use strict";
@@ -1180,9 +1148,9 @@
         .controller("userProfileEditController", userProfileEditController);
 }());
 (function () {
+    "use strict";
 
     var itemService = function (apiService) {
-
         var sortOrder = {};
         var items = [];
         var itemFilters = [];
@@ -1190,24 +1158,24 @@
         var getSortOrderOptions = function () {
             var data = [
                 {
-                    name: 'Most Recent',
-                    value: '-datePosted'
+                    name: "Most Recent",
+                    value: "-datePosted"
                 },
                 {
-                    name: 'Oldest',
-                    value: 'datePosted'
+                    name: "Oldest",
+                    value: "datePosted"
                 },
                 {
-                    name: 'Highest Starred',
-                    value: '-starCount'
+                    name: "Highest Starred",
+                    value: "-starCount"
                 },
                 {
-                    name: 'Lowest to Highest Price',
-                    value: 'price'
+                    name: "Lowest to Highest Price",
+                    value: "price"
                 },
                 {
-                    name: 'Highest to Lowest Price',
-                    value: '-price'
+                    name: "Highest to Lowest Price",
+                    value: "-price"
                 }
             ];
 
@@ -1215,7 +1183,6 @@
         };
 
         var getActiveSort = function () {
-
             if ($.isEmptyObject(sortOrder) === true) {
                 sortOrder = getSortOrderOptions()[0];
             }
@@ -1232,7 +1199,6 @@
         };
 
         var setActiveSort = function (sort) {
-
             sortOrder = sort;
         };
 
@@ -1242,33 +1208,27 @@
                 if (arr[i]
                     && arr[i].hasOwnProperty(attr)
                     && (arguments.length > 2 && arr[i][attr] === value)) {
-
                     arr.splice(i, 1);
-
                 }
             }
             return arr;
-        }
+        };
 
         var setCategoryFilter = function (value) {
-
             removeArrayObjectByAttr(itemFilters, "name", "Category");
 
             itemFilters.push({
                 name: "Category",
                 value: value
             });
-
         };
 
         var removeFilter = function (filter) {
-
             removeArrayObjectByAttr(itemFilters, "name", filter.name);
-
         };
 
         /* Active functions below
-         * 
+         *
          */
 
         // Items specific
@@ -1295,19 +1255,19 @@
 
         var save = function (item) {
             return apiService.item.save(item).$promise;
-        }
+        };
 
         var update = function (id, item) {
             return apiService.item.update({ id: id }, item).$promise;
-        }
+        };
 
         var deleteItem = function (item) {
             return apiService.item.delete({ id: item.id }).$promise;
-        }
+        };
 
         var setItems = function (data) {
             items = angular.copy(data);
-        }
+        };
 
         var search = function (pageNumber, pageSize, searchText) {
             return apiService.item.search({
@@ -1315,7 +1275,7 @@
                 pageSize: pageSize,
                 searchText: searchText
             }).$promise;
-        }
+        };
 
         // User specific
         var getUserItems = function (userId) {
@@ -1350,9 +1310,9 @@
 
     itemService.$inject = ["apiService"];
     module.factory("itemService", itemService);
-
 }());
 (function () {
+    "use strict";
 
     var itemController = function (appInfo) {
         $("title").text("Items" + appInfo.APP_NAME);
@@ -1361,9 +1321,9 @@
     itemController.$inject = ["appInfo"];
     angular.module("app")
             .controller("itemController", itemController);
-
 }());
 (function () {
+    "use strict";
 
     var app = angular.module("app");
 
@@ -1394,9 +1354,9 @@
             }
         };
     });
-
 }());
 (function () {
+    "use strict";
 
     var app = angular.module("app");
 
@@ -1407,7 +1367,7 @@
 
         vm.recordCount = 0;
         vm.pageNumber = 1;
-        vm.pageSize = 5; 
+        vm.pageSize = 5;
 
         vm.getList = function () {
             logger.debug.info(vm.filterText);
@@ -1441,7 +1401,6 @@
         };
 
         vm.edit = function (item) {
-
             var itemCopy = angular.copy(item);
 
             itemModalService.edit(itemCopy)
@@ -1487,17 +1446,15 @@
         vm.pageChanged = function () {
             vm.getList();
         };
-
     };
 
     listController.$inject = ["itemService", "userService", "itemModalService", "dialogService", "logger"];
     app.controller("listController", listController);
-
 }());
 (function () {
+    "use strict";
 
     var itemModalService = function ($uibModal) {
-
         var add = function () {
             var modalInstance = $uibModal.open({
                 templateUrl: "app/modules/item/postItem.html",
@@ -1508,7 +1465,7 @@
             });
 
             return modalInstance.result;
-        }
+        };
 
         var edit = function (item) {
             var modalInstance = $uibModal.open({
@@ -1521,12 +1478,11 @@
                     item: function () {
                         return item;
                     }
-
                 }
             });
 
             return modalInstance.result;
-        }
+        };
 
         return {
             add: add,
@@ -1538,14 +1494,13 @@
 
     itemModalService.$inject = ['$uibModal'];
     module.factory("itemModalService", itemModalService);
-
 }());
 (function () {
+    "use strict";
 
     var app = angular.module("app");
 
     var postItemController = function ($scope, $uibModalInstance, logger, itemService) {
-
         var vm = this;
 
         vm.currencies = [];
@@ -1558,7 +1513,6 @@
         vm.item = { currency: vm.currencies[0].name };
 
         vm.save = function (item) {
-
             item.userId = 1;
 
             itemService.save(item).then(function () {
@@ -1573,24 +1527,20 @@
 
         vm.cancel = function () {
             $uibModalInstance.dismiss();
-        }
+        };
 
         vm.ok = function () {
             $uibModalInstance.close();
-        }
-
+        };
     };
 
     postItemController.$inject = ["$scope", "$uibModalInstance", "logger", "itemService"];
     app.controller("postItemController", postItemController);
-
 }());
 (function () {
-
     var app = angular.module("app");
 
     var editItemController = function (logger, itemService, item, $uibModalInstance) {
-
         var vm = this;
         vm.currencies = [];
         vm.item = item;
@@ -1604,7 +1554,7 @@
         vm.update = function () {
             itemService.update(vm.item.id, vm.item)
                         .then(function () {
-                            //success 
+                            //success
                             $uibModalInstance.close();
                         }, function (error) {
                             //error
@@ -1615,12 +1565,10 @@
         vm.cancel = function () {
             $uibModalInstance.dismiss();
         }
-
     };
 
     editItemController.$inject = ["logger", "itemService", "item", "$uibModalInstance"];
     app.controller("editItemController", editItemController);
-
 }());
 (function () {
     var app = angular.module("app");
@@ -1633,7 +1581,7 @@
             },
             templateUrl: "/app/modules/item/listCard/listCard.html",
             controllerAs: "vm",
-        }
+        };
     });
 }());
 (function () {
@@ -1699,6 +1647,7 @@
 
 }());
 (function () {
+    "use strict";
 
     var categoryService = function () {
         var initialSortOrder = "name";
@@ -1709,31 +1658,31 @@
             data[0] = {
                 name: "Book",
                 itemCount: 544
-            }
+            };
             data[1] = {
                 name: "Bag",
                 itemCount: 33
-            }
+            };
             data[2] = {
                 name: "Shoes",
                 itemCount: 9987
-            }
+            };
             data[3] = {
                 name: "Shirt",
                 itemCount: 5
-            }
+            };
             data[4] = {
                 name: "Car",
                 itemCount: 23
-            }
+            };
             data[5] = {
                 name: "Bike",
                 itemCount: 9
-            }
+            };
             data[6] = {
                 name: "Appliances",
                 itemCount: 489571
-            }
+            };
 
             // Replace above with $http.get call from API
             return data;
@@ -1741,7 +1690,7 @@
 
         var getSortOrder = function () {
             return initialSortOrder;
-        }
+        };
 
         return {
             getCategories: getCategories,
@@ -1751,10 +1700,9 @@
 
     var module = angular.module("app");
     module.factory("categoryService", categoryService);
-
 }());
 (function () {
-
+    "use strict";
 
     var categoryController = function ($scope, $stateParams, itemService, appInfo) {
         $("title").text($stateParams.name + appInfo.APP_NAME);
@@ -1776,14 +1724,13 @@
 
     var app = angular.module("app");
     app.controller("categoryController", ["$scope", "$stateParams", "itemService", "appInfo", categoryController]);
-
 }());
 (function () {
+    "use strict";
 
     var app = angular.module("app");
 
     app.directive("categoryListPanel", function () {
-
         return {
             scope: {
                 items: "=",
@@ -1791,7 +1738,6 @@
             },
             templateUrl: "/app/modules/category/categoryListPanel.html",
             controller: function ($scope, categoryService, itemService) {
-
                 //Category panel
                 $scope.categorySortOrder = categoryService.getSortOrder();
 
@@ -1811,11 +1757,8 @@
                             $scope.items = data;
                             $scope.itemCount = itemService.getItemCount();
                         }, null);
-
                 };
             }
-        }
-
+        };
     });
-
 }());

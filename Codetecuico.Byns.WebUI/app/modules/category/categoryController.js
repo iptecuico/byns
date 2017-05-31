@@ -1,5 +1,5 @@
 ﻿(function () {
-
+    "use strict";
 
     var categoryController = function ($scope, $stateParams, itemService, appInfo) {
         $("title").text($stateParams.name + appInfo.APP_NAME);
@@ -21,5 +21,4 @@
 
     var app = angular.module("app");
     app.controller("categoryController", ["$scope", "$stateParams", "itemService", "appInfo", categoryController]);
-
 }());

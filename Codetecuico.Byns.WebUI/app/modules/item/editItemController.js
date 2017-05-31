@@ -1,9 +1,7 @@
 ﻿(function () {
-
     var app = angular.module("app");
 
     var editItemController = function (logger, itemService, item, $uibModalInstance) {
-
         var vm = this;
         vm.currencies = [];
         vm.item = item;
@@ -17,7 +15,7 @@
         vm.update = function () {
             itemService.update(vm.item.id, vm.item)
                         .then(function () {
-                            //success 
+                            //success
                             $uibModalInstance.close();
                         }, function (error) {
                             //error
@@ -28,10 +26,8 @@
         vm.cancel = function () {
             $uibModalInstance.dismiss();
         }
-
     };
 
     editItemController.$inject = ["logger", "itemService", "item", "$uibModalInstance"];
     app.controller("editItemController", editItemController);
-
 }());

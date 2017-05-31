@@ -1,7 +1,7 @@
 ﻿(function () {
+    "use strict";
 
     var itemModalService = function ($uibModal) {
-
         var add = function () {
             var modalInstance = $uibModal.open({
                 templateUrl: "app/modules/item/postItem.html",
@@ -12,7 +12,7 @@
             });
 
             return modalInstance.result;
-        }
+        };
 
         var edit = function (item) {
             var modalInstance = $uibModal.open({
@@ -25,12 +25,11 @@
                     item: function () {
                         return item;
                     }
-
                 }
             });
 
             return modalInstance.result;
-        }
+        };
 
         return {
             add: add,
@@ -42,5 +41,4 @@
 
     itemModalService.$inject = ['$uibModal'];
     module.factory("itemModalService", itemModalService);
-
 }());

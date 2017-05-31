@@ -1,5 +1,5 @@
 ﻿(function () {
+    "use strict";
 
-    angular.module('ctException', ['ctLogger']);
-
+    angular.module("ctException", ["ctLogger"]);
 }());

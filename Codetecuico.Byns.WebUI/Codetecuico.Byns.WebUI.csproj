@@ -121,6 +121,7 @@
     <Content Include="Content\style\_loadingIndicator.less" />
     <None Include="bundleconfig.json" />
     <Content Include="manifest.json" />
+    <Content Include="JSLintNet.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

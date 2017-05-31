@@ -1,4 +1,5 @@
 ﻿(function () {
+    "use strict";
 
     var app = angular.module("app");
 
@@ -13,5 +14,4 @@
     };
 
     app.controller("itemCardDetailsController", ["$scope", "$stateParams", "itemService", itemCardDetailsController]);
-
 }());

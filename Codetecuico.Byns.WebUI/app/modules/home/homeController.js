@@ -1,4 +1,5 @@
 ﻿(function () {
+    "use strict";
 
     var homeController = function ($scope, itemService, appInfo) {
         $("title").text("All items" + appInfo.APP_NAME);
@@ -11,7 +12,7 @@
 
         //Populating item list
         $scope.getItems = function () {
-            itemService.search(1,50,"")
+            itemService.search(1, 50, "")
                 .then(function (data) {
                     $scope.items = angular.copy(data.data);
                     itemService.setItems($scope.items);
@@ -21,11 +22,9 @@
         };
 
         $scope.getItems(currentSortOrder);
-
     };
 
     homeController.$inject = ["$scope", "itemService", "appInfo"];
     angular.module("app")
             .controller("homeController", homeController);
-
 }());

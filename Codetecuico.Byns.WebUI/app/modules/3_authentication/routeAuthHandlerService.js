@@ -1,13 +1,10 @@
-﻿    (function () {
-
+﻿(function () {
     var routeAuthHandler = function ($rootScope, $state, ctUser, $timeout) {
-
         var start = function () {
             var refreshingToken = null;
             var auth = ctUser.auth();
 
-            $rootScope.$on('$stateChangeStart', function (event, current) {
-
+            $rootScope.$on("$stateChangeStart", function (event, current) {
                 var token = ctUser.token();
                 var refreshToken = ctUser.refreshToken();
 
@@ -46,7 +43,6 @@
                         }
                     }
                 };
-
             });
             auth.hookEvents();
         };
@@ -54,12 +50,10 @@
         return {
             start: start
         }
-
     };
 
     routeAuthHandler.$inject = ["$rootScope", "$state", "ctUser", "$timeout"];
 
-    angular.module('ctAuthentication')
-            .factory('routeAuthHandler', routeAuthHandler);
-
+    angular.module("ctAuthentication")
+            .factory("routeAuthHandler", routeAuthHandler);
 }());

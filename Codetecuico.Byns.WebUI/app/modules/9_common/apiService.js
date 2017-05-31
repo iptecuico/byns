@@ -1,31 +1,29 @@
 ﻿(function () {
-
     var apiService = function ($resource, $location) {
-
         var baseUrlDev = "http://localhost:14303/api";
         var baseUrlProd = "https://bynsapi.azurewebsites.net/api";
         var baseUrl = baseUrlProd;
 
-        if ($location.host() === 'byns.azurewebsites.net') {
+        if ($location.host() === "byns.azurewebsites.net") {
             baseUrl = baseUrlProd;
         } else {
             baseUrl = baseUrlDev;
         }
-        
+
         return {
             app: $resource(baseUrl + "/app/version", null, {
-                'getVersion': { method: 'GET' }
+                "getVersion": { method: "GET" }
             }),
             item: $resource(baseUrl + "/item", null, {
-                'update': { method: 'PUT' },
-                'delete': {
-                    method: 'DELETE',
+                "update": { method: "PUT" },
+                "delete": {
+                    method: "DELETE",
                     params: {
                         id: "@id"
                     }
                 },
-                'search': {
-                    method: 'GET',
+                "search": {
+                    method: "GET",
                     params: {
                         pageNumber: "@pageNumber",
                         pageSize: "@pageSize",
@@ -34,12 +32,12 @@
                 }
             }),
             user: $resource(baseUrl + "/user", null, {
-                'me': {
+                "me": {
                     url: baseUrl + "/user/me",
-                    method: 'GET'
+                    method: "GET"
                 },
-                'get': { method: 'GET' },
-                'update': { method: 'PUT' }
+                "get": { method: "GET" },
+                "update": { method: "PUT" }
             })
         }
     }
@@ -48,5 +46,4 @@
 
     angular.module("app")
             .factory("apiService", apiService);
-
 }());

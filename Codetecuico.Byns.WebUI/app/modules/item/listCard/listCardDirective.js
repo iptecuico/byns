@@ -9,6 +9,6 @@
             },
             templateUrl: "/app/modules/item/listCard/listCard.html",
             controllerAs: "vm",
-        }
+        };
     });
 }());

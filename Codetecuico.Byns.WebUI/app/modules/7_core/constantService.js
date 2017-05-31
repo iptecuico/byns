@@ -1,4 +1,5 @@
 ﻿(function () {
+    "use strict";
 
     angular.module("app")
         .constant("appInfo", {
@@ -14,7 +15,7 @@
 
     angular.module("app")
         .constant("authInfo", {
-            AUTH0_DOMAIN: 'codetecuico.auth0.com',
-            AUTH0_CLIENT_ID: 'ZUCOYNwmRRiJioqUCKdoBtTI21vgFmZp'
+            AUTH0_DOMAIN: "codetecuico.auth0.com",
+            AUTH0_CLIENT_ID: "ZUCOYNwmRRiJioqUCKdoBtTI21vgFmZp"
         });
 }());
