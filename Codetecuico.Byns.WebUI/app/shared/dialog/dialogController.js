@@ -1,4 +1,5 @@
 ﻿(function () {
+    "use strict";
 
     var dialogController = function ($uibModalInstance, data) {
         var vm = this;
@@ -14,9 +15,8 @@
         }
     };
 
-    dialogController.$inject = ['$uibModalInstance', 'data'];
+    dialogController.$inject = ["$uibModalInstance", "data"];
 
-    angular.module('app')
-        .controller('dialogController', dialogController);
-
+    angular.module("app")
+        .controller("dialogController", dialogController);
 }());

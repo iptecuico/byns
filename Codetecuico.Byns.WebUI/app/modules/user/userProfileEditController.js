@@ -17,7 +17,7 @@
             else {
                 vm.user = dbProfile;
             }
-        };
+        }
 
         vm.update = function (user) {
             userService.update(user)

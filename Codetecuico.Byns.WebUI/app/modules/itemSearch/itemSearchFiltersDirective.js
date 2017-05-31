@@ -1,4 +1,5 @@
 ﻿(function () {
+    "use strict";
 
     var app = angular.module("app");
 
@@ -10,13 +11,12 @@
             },
             templateUrl: "/app/modules/itemSearch/itemSearchFilters.html",
             controller: function ($scope, itemService, logger) {
-
                 $scope.filterList = itemService.getFilters();
                 logger.debug.info("Loaded filter - " + $scope.filterList.length);
 
                 $scope.removeFilter = function (filter) {
                     logger.debug.info("Filter removed - " + filter.value);
-                                        
+
                     itemService.removeFilter(filter);
                     $scope.filterList = itemService.getFilters();
 
@@ -28,9 +28,7 @@
                             $scope.itemCount = itemService.getItemCount();
                         }, null);
                 };
-
             }
         };
     });
-
 }());

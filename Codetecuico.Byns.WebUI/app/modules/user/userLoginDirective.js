@@ -1,7 +1,9 @@
 ﻿(function () {
+    "use strict";
+
     var app = angular.module("app");
 
-    app.directive('userLogin', function (userService) {
+    app.directive("userLogin", function (userService) {
         return {
             templateUrl: "/app/modules/user/userLogin.html",
             controllerAs: "vm",
@@ -16,7 +18,7 @@
                 }
 
                 vm.login = function () {
-                    //if ($location.host() !== 'byns.azurewebsites.net') {
+                    //if ($location.host() !== "byns.azurewebsites.net") {
                     //    ctUser.mockSignIn();
                     //    vm.userProfile = ctUser.profile();
                     //    logger.success("You logged in successfully!");
@@ -49,9 +51,9 @@
 
                 vm.logout = function () {
                     ctUser.signOut();
-                    $state.go('home');
-                }
+                    $state.go("home");
+                };
             }
-        }
+        };
     });
 }());

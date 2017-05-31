@@ -4,9 +4,8 @@
     var app = angular.module("app");
 
     var userService = function ($http, $q, store, apiService) {
-
         /* Active functions below
-         * 
+         *
          */
         var me = function () {
             return apiService.user.me().$promise;
@@ -18,7 +17,7 @@
 
         var create = function (user) {
             return apiService.user.save(user).$promise;
-        }
+        };
 
         var update = function (user) {
             return apiService.user.update({ id: user.id }, user).$promise;
@@ -33,5 +32,4 @@
     };
 
     app.factory("userService", ["$http", "$q", "store", "apiService", userService]);
-
 }());

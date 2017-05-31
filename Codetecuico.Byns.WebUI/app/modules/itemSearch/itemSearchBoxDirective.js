@@ -1,4 +1,5 @@
 ﻿(function () {
+    "use strict";
 
     var app = angular.module("app");
 
@@ -10,7 +11,6 @@
             },
             templateUrl: "/app/modules/itemSearch/itemSearchBox.html",
             controller: function ($scope, itemService) {
-
                 $scope.searchItems = function (filter) {
                     itemService.search(1, 50, filter)
                             .then(function (data) {
@@ -22,5 +22,4 @@
             }
         };
     });
-
 }());

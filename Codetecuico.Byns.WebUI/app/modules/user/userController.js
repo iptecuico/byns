@@ -1,4 +1,6 @@
 ﻿(function () {
+    "use strict";
+
     var userController = function ($scope, $stateParams, userService, appInfo) {
         $("title").text("User" + appInfo.APP_NAME);
 

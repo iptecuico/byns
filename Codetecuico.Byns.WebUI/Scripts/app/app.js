@@ -721,27 +721,21 @@
     });
 }());
 (function () {
-
     var app = angular.module("app");
 
-    app.directive('ctMenu', function () {
+    app.directive("ctMenu", function () {
         return {
             restrict: "A",
             transclude: true,
             scope: {},
             templateUrl: "/app/shared/menu/menu.html",
-            controller: function () {
-
-            }
-        }
+        };
     });
-
 }());
 (function () {
-
     var app = angular.module("app");
 
-    app.directive('ctMenuItem', function () {
+    app.directive("ctMenuItem", function () {
         return {
             restrict: "A",
             scope: {
@@ -750,19 +744,12 @@
                 route: "@"
             },
             templateUrl: "/app/shared/menu/menuItem.html",
-            controller: function () {
-                //$scope.setSelectedMenu = function (menu) {
-                //    $("#" + menu).parents().children().removeClass("active");
-                //    $("#" + menu).addClass("active");
-                //}
-            },
             link: function (scope, element) {
-                // exclude the directive's own element
+                // exclude the directive"s own element
                 element.replaceWith(element.contents());
             }
         }
     });
-
 }());
 // Requires jquery-ui.*.js, datepicker.css, theme.css
 
@@ -812,9 +799,7 @@
     });
 }());
 (function () {
-
     var dialogService = function ($uibModal) {
-
         var confirm = function (title, message, data, buttons, action) {
             var modalInstance = $uibModal.open({
                 templateUrl: "app/shared/dialog/confirm.html",
@@ -829,7 +814,7 @@
                             data: data,
                             buttons: buttons,
                             action: action
-                        }
+                        };
                     }
                 },
                 size: "sm"
@@ -845,11 +830,11 @@
 
     var module = angular.module("app");
 
-    dialogService.$inject = ['$uibModal'];
+    dialogService.$inject = ["$uibModal"];
     module.factory("dialogService", dialogService);
-
 }());
 (function () {
+    "use strict";
 
     var dialogController = function ($uibModalInstance, data) {
         var vm = this;
@@ -865,11 +850,10 @@
         }
     };
 
-    dialogController.$inject = ['$uibModalInstance', 'data'];
+    dialogController.$inject = ["$uibModalInstance", "data"];
 
-    angular.module('app')
-        .controller('dialogController', dialogController);
-
+    angular.module("app")
+        .controller("dialogController", dialogController);
 }());
 (function () {
 
@@ -989,9 +973,8 @@
     var app = angular.module("app");
 
     var userService = function ($http, $q, store, apiService) {
-
         /* Active functions below
-         * 
+         *
          */
         var me = function () {
             return apiService.user.me().$promise;
@@ -1003,7 +986,7 @@
 
         var create = function (user) {
             return apiService.user.save(user).$promise;
-        }
+        };
 
         var update = function (user) {
             return apiService.user.update({ id: user.id }, user).$promise;
@@ -1018,9 +1001,10 @@
     };
 
     app.factory("userService", ["$http", "$q", "store", "apiService", userService]);
-
 }());
 (function () {
+    "use strict";
+
     var userController = function ($scope, $stateParams, userService, appInfo) {
         $("title").text("User" + appInfo.APP_NAME);
 
@@ -1036,9 +1020,11 @@
         .controller("userController", userController);
 }());
 (function () {
+    "use strict";
+
     var app = angular.module("app");
 
-    app.directive('userLogin', function (userService) {
+    app.directive("userLogin", function (userService) {
         return {
             templateUrl: "/app/modules/user/userLogin.html",
             controllerAs: "vm",
@@ -1053,7 +1039,7 @@
                 }
 
                 vm.login = function () {
-                    //if ($location.host() !== 'byns.azurewebsites.net') {
+                    //if ($location.host() !== "byns.azurewebsites.net") {
                     //    ctUser.mockSignIn();
                     //    vm.userProfile = ctUser.profile();
                     //    logger.success("You logged in successfully!");
@@ -1086,13 +1072,15 @@
 
                 vm.logout = function () {
                     ctUser.signOut();
-                    $state.go('home');
-                }
+                    $state.go("home");
+                };
             }
-        }
+        };
     });
 }());
 (function () {
+    "use strict";
+
     var userProfileController = function (ctUser, userService) {
         var vm = this;
         vm.profile = {};
@@ -1105,7 +1093,7 @@
                 .then(function (data) {
                     vm.profile = data;
                 }, null);
-        };
+        }
     };
 
     userProfileController.$inject = ["ctUser", "userService"];
@@ -1131,7 +1119,7 @@
             else {
                 vm.user = dbProfile;
             }
-        };
+        }
 
         vm.update = function (user) {
             userService.update(user)
@@ -1585,6 +1573,7 @@
     });
 }());
 (function () {
+    "use strict";
 
     var app = angular.module("app");
 
@@ -1596,13 +1585,12 @@
             },
             templateUrl: "/app/modules/itemSearch/itemSearchFilters.html",
             controller: function ($scope, itemService, logger) {
-
                 $scope.filterList = itemService.getFilters();
                 logger.debug.info("Loaded filter - " + $scope.filterList.length);
 
                 $scope.removeFilter = function (filter) {
                     logger.debug.info("Filter removed - " + filter.value);
-                                        
+
                     itemService.removeFilter(filter);
                     $scope.filterList = itemService.getFilters();
 
@@ -1614,13 +1602,12 @@
                             $scope.itemCount = itemService.getItemCount();
                         }, null);
                 };
-
             }
         };
     });
-
 }());
 (function () {
+    "use strict";
 
     var app = angular.module("app");
 
@@ -1632,7 +1619,6 @@
             },
             templateUrl: "/app/modules/itemSearch/itemSearchBox.html",
             controller: function ($scope, itemService) {
-
                 $scope.searchItems = function (filter) {
                     itemService.search(1, 50, filter)
                             .then(function (data) {
@@ -1644,7 +1630,6 @@
             }
         };
     });
-
 }());
 (function () {
     "use strict";

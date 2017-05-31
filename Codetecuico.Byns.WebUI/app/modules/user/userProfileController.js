@@ -1,4 +1,6 @@
 ﻿(function () {
+    "use strict";
+
     var userProfileController = function (ctUser, userService) {
         var vm = this;
         vm.profile = {};
@@ -11,7 +13,7 @@
                 .then(function (data) {
                     vm.profile = data;
                 }, null);
-        };
+        }
     };
 
     userProfileController.$inject = ["ctUser", "userService"];
