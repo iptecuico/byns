@@ -1,7 +1,13 @@
 ﻿{
   "version": "2.3.0",
-  "ignore": [],
-  "options": {},
-  "globalVariables": [],
+  "ignore": [
+    "\\Scripts\\"
+  ],
+  "options": {
+    "this": true
+  },
+  "globalVariables": [
+    "angular"
+  ],
   "runOnBuild": true
 }

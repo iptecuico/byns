@@ -3,7 +3,7 @@
 
     var app = angular.module("app");
 
-    var userService = function ($http, $q, store, apiService) {
+    var userService = function (apiService) {
         /* Active functions below
          *
          */
@@ -31,5 +31,5 @@
         };
     };
 
-    app.factory("userService", ["$http", "$q", "store", "apiService", userService]);
+    app.factory("userService", ["apiService", userService]);
 }());

@@ -1,9 +1,9 @@
 ﻿(function () {
+    "use strict";
+
     var userProfileEditController = function (ctUser, userService, logger, $state) {
         var vm = this;
         vm.user = {};
-
-        initialize();
 
         function initialize() {
             var dbProfile = ctUser.dbProfile();
@@ -13,11 +13,12 @@
                         ctUser.setDbProfile(data);
                         vm.user = data;
                     }, null);
-            }
-            else {
+            } else {
                 vm.user = dbProfile;
             }
         }
+
+        initialize();
 
         vm.update = function (user) {
             userService.update(user)

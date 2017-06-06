@@ -15,7 +15,7 @@
 
                 vm.goToProfile = function () {
                     $state.go("user.profile");
-                }
+                };
 
                 vm.login = function () {
                     //if ($location.host() !== "byns.azurewebsites.net") {

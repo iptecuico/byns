@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    var userController = function ($scope, $stateParams, userService, appInfo) {
+    var userController = function (appInfo) {
         $("title").text("User" + appInfo.APP_NAME);
 
         //$scope.user = userService.getUserInfo($stateParams.userId);
@@ -11,7 +11,7 @@
         //};
     };
 
-    userController.$inject = ["$scope", "$stateParams", "userService", "appInfo"];
+    userController.$inject = ["appInfo"];
     angular.module("app")
         .controller("userController", userController);
 }());

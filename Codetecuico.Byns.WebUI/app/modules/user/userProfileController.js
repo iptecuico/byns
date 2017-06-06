@@ -1,11 +1,9 @@
 ﻿(function () {
     "use strict";
 
-    var userProfileController = function (ctUser, userService) {
+    var userProfileController = function (userService) {
         var vm = this;
         vm.profile = {};
-
-        initialize();
 
         function initialize() {
             //var profile = ctUser.profile();
@@ -14,9 +12,11 @@
                     vm.profile = data;
                 }, null);
         }
+
+        initialize();
     };
 
-    userProfileController.$inject = ["ctUser", "userService"];
+    userProfileController.$inject = ["userService"];
     angular.module("app")
         .controller("userProfileController", userProfileController);
 }());

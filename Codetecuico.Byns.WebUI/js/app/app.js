@@ -1480,7 +1480,7 @@
 
     var module = angular.module("app");
 
-    itemModalService.$inject = ['$uibModal'];
+    itemModalService.$inject = ["$uibModal"];
     module.factory("itemModalService", itemModalService);
 }());
 (function () {

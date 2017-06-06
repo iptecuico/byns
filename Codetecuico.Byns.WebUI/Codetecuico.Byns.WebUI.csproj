@@ -106,19 +106,19 @@
     <Content Include="Scripts\angular-ui\ui-utils.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
-    <Content Include="Scripts\app\app.js" />
-    <Content Include="Scripts\app\app.min.js">
+    <Content Include="js\app\app.js" />
+    <Content Include="js\app\app.min.js">
       <DependentUpon>app.js</DependentUpon>
     </Content>
     <Content Include="Scripts\auth0\lock.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <Content Include="Content\style\_input.less" />
-    <Content Include="Content\style\_toastr.less" />
-    <Content Include="Content\style\_bootstrap.less" />
-    <Content Include="Content\style\_footer.less" />
-    <Content Include="Content\style\_unknown.less" />
-    <Content Include="Content\style\_loadingIndicator.less" />
+    <Content Include="style\_input.less" />
+    <Content Include="style\_toastr.less" />
+    <Content Include="style\_bootstrap.less" />
+    <Content Include="style\_footer.less" />
+    <Content Include="style\_unknown.less" />
+    <Content Include="style\_loadingIndicator.less" />
     <None Include="bundleconfig.json" />
     <Content Include="manifest.json" />
     <Content Include="JSLintNet.json" />
@@ -197,10 +197,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\loading-indicator.gif" />
-    <Content Include="Content\style\main.css">
+    <Content Include="style\main.css">
       <DependentUpon>main.less</DependentUpon>
     </Content>
-    <Content Include="Content\style\main.min.css">
+    <Content Include="style\main.min.css">
       <DependentUpon>main.css</DependentUpon>
     </Content>
     <Content Include="Content\toastr.css" />
@@ -233,12 +233,12 @@
     <Content Include="Content\toastr.less" />
     <Content Include="Scripts\angular-resource.min.js.map" />
     <Content Include="data\item\items.json" />
-    <Content Include="Content\style\_animate.less" />
-    <Content Include="Content\style\_body.less" />
-    <Content Include="Content\style\_button.less" />
-    <Content Include="Content\style\_image.less" />
-    <Content Include="Content\style\_item.less" />
-    <Content Include="Content\style\main.less" />
+    <Content Include="style\_animate.less" />
+    <Content Include="style\_body.less" />
+    <Content Include="style\_button.less" />
+    <Content Include="style\_image.less" />
+    <Content Include="style\_item.less" />
+    <Content Include="style\main.less" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

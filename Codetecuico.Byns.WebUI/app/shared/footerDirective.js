@@ -14,6 +14,6 @@
                     vm.appVersion = data.appVersion;
                 });
             }
-        }
+        };
     });
 }());

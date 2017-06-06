@@ -1,6 +1,6 @@
 [
   {
-    "outputFileName": "Scripts/app/app.js",
+    "outputFileName": "js/app/app.js",
     "inputFiles": [
 
       "app/modules/1_logger/loggerModule.js",
