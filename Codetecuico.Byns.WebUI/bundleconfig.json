@@ -3,12 +3,8 @@
     "outputFileName": "js/app/app.js",
     "inputFiles": [
 
-      "app/modules/1_logger/loggerModule.js",
-      "app/modules/1_logger/loggerService.js",
-
-      "app/modules/2_exception/exceptionModule.js",
-      "app/modules/2_exception/genericErrorHandlerConfig.js",
-      "app/modules/2_exception/routeErrorHandlerService.js",
+      "app/modules/1_logger/",
+      "app/modules/2_exception/",
 
       "app/modules/3_authentication/authenticationModule.js",
       "app/modules/3_authentication/ctUser.js",
@@ -61,6 +57,10 @@
       "app/modules/category/categoryService.js",
       "app/modules/category/categoryController.js",
       "app/modules/category/categoryDirective.js"
-    ]
+    ],
+    "minify": {
+      "enabled": true,
+      "preserveImportantComments": false
+    }
   }
 ]

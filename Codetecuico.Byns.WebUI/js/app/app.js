@@ -717,7 +717,7 @@
                     vm.appVersion = data.appVersion;
                 });
             }
-        }
+        };
     });
 }());
 (function () {
@@ -769,25 +769,18 @@
 
 }());
 (function () {
-
     var app = angular.module("app");
 
     app.directive("commentDisqus", function () {
         return {
-            scope:{
+            scope: {
                 url: "=",
                 id: "="
             },
             templateUrl: "/app/shared/comment.html",
-            controller: function () {
-
-            }
         }
-
     });
-
 }());
-
 (function () {
     var app = angular.module("app");
 
@@ -972,7 +965,7 @@
 
     var app = angular.module("app");
 
-    var userService = function ($http, $q, store, apiService) {
+    var userService = function (apiService) {
         /* Active functions below
          *
          */
@@ -1000,12 +993,12 @@
         };
     };
 
-    app.factory("userService", ["$http", "$q", "store", "apiService", userService]);
+    app.factory("userService", ["apiService", userService]);
 }());
 (function () {
     "use strict";
 
-    var userController = function ($scope, $stateParams, userService, appInfo) {
+    var userController = function (appInfo) {
         $("title").text("User" + appInfo.APP_NAME);
 
         //$scope.user = userService.getUserInfo($stateParams.userId);
@@ -1015,7 +1008,7 @@
         //};
     };
 
-    userController.$inject = ["$scope", "$stateParams", "userService", "appInfo"];
+    userController.$inject = ["appInfo"];
     angular.module("app")
         .controller("userController", userController);
 }());
@@ -1036,7 +1029,7 @@
 
                 vm.goToProfile = function () {
                     $state.go("user.profile");
-                }
+                };
 
                 vm.login = function () {
                     //if ($location.host() !== "byns.azurewebsites.net") {
@@ -1081,11 +1074,9 @@
 (function () {
     "use strict";
 
-    var userProfileController = function (ctUser, userService) {
+    var userProfileController = function (userService) {
         var vm = this;
         vm.profile = {};
-
-        initialize();
 
         function initialize() {
             //var profile = ctUser.profile();
@@ -1094,18 +1085,20 @@
                     vm.profile = data;
                 }, null);
         }
+
+        initialize();
     };
 
-    userProfileController.$inject = ["ctUser", "userService"];
+    userProfileController.$inject = ["userService"];
     angular.module("app")
         .controller("userProfileController", userProfileController);
 }());
 (function () {
+    "use strict";
+
     var userProfileEditController = function (ctUser, userService, logger, $state) {
         var vm = this;
         vm.user = {};
-
-        initialize();
 
         function initialize() {
             var dbProfile = ctUser.dbProfile();
@@ -1115,11 +1108,12 @@
                         ctUser.setDbProfile(data);
                         vm.user = data;
                     }, null);
-            }
-            else {
+            } else {
                 vm.user = dbProfile;
             }
         }
+
+        initialize();
 
         vm.update = function (user) {
             userService.update(user)
