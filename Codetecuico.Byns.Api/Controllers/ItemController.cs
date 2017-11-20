@@ -1,4 +1,5 @@
-﻿using Codetecuico.Byns.Api.Helpers;
+﻿using Codetecuico.Byns.Api.Filters;
+using Codetecuico.Byns.Api.Helpers;
 using Codetecuico.Byns.Api.Models;
 using Codetecuico.Byns.Common.AzureStorage;
 using Codetecuico.Byns.Common.Core;
@@ -55,6 +56,7 @@ namespace Codetecuico.Byns.Api.Controllers
         }
 
         [HttpPost]
+        [ValidateUser]
         public IHttpActionResult Post([FromBody]ItemModel item)
         {
             var user = _userService.GetByExternalId(ClientId);
