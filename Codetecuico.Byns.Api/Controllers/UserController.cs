@@ -11,7 +11,7 @@ namespace Codetecuico.Byns.Api.Controllers
     {
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService) : base (userService)
         {
             _userService = userService;
         }
@@ -24,7 +24,7 @@ namespace Codetecuico.Byns.Api.Controllers
         [Route("api/user/me")]
         public IHttpActionResult Me()
         {
-            var user = _userService.GetByExternalId(ClientId);
+            var user = DbUser;
             UserModel model = null;
 
             if (user != null)
@@ -56,8 +56,7 @@ namespace Codetecuico.Byns.Api.Controllers
         [HttpGet]
         public IHttpActionResult Get()
         {
-            var user = _userService.GetByExternalId(ClientId);
-
+            var user = DbUser;
             if (user == null)
             {
                 return NotFound();
@@ -71,7 +70,7 @@ namespace Codetecuico.Byns.Api.Controllers
         [HttpPut]
         public IHttpActionResult Put([FromUri]int id, [FromBody]UserModel user)
         {
-            var currentUser = _userService.GetByExternalId(ClientId);
+            var currentUser = DbUser;
             if (currentUser == null)
             {
                 return BadRequest(Constants.Messages.InvalidRequest);

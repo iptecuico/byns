@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
@@ -9,6 +11,7 @@ namespace Codetecuico.Byns.Api.Filters
     {
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
+            //actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(HttpStatusCode.BadRequest);
             base.OnActionExecuted(actionExecutedContext);
         }
 

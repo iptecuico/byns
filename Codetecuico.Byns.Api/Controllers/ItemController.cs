@@ -16,7 +16,7 @@ namespace Codetecuico.Byns.Api.Controllers
         private readonly IItemService _itemService;
         private readonly IUserService _userService;
 
-        public ItemController(IUserService userService, IItemService itemService)
+        public ItemController(IUserService userService, IItemService itemService) : base (userService)
         {
             _itemService = itemService;
             _userService = userService;
@@ -59,8 +59,7 @@ namespace Codetecuico.Byns.Api.Controllers
         [ValidateUser]
         public IHttpActionResult Post([FromBody]ItemModel item)
         {
-            var user = _userService.GetByExternalId(ClientId);
-            if (user == null
+            if (!IsValidUser()
                 || !ModelState.IsValid
                 || item == null)
             {
@@ -68,9 +67,9 @@ namespace Codetecuico.Byns.Api.Controllers
             }
 
             var newItem = MapperHelper.Map(item);
-            newItem.UserId = user.Id;
-            newItem.CreatedBy = user.Id;
-            newItem.ModifiedBy = user.Id;
+            newItem.UserId = DbUser.Id;
+            newItem.CreatedBy = DbUser.Id;
+            newItem.ModifiedBy = DbUser.Id;
 
             newItem = _itemService.Add(newItem);
 
@@ -87,15 +86,14 @@ namespace Codetecuico.Byns.Api.Controllers
         [HttpPut]
         public IHttpActionResult Put([FromUri]int id, [FromBody]ItemModel item)
         {
-            var user = _userService.GetByExternalId(ClientId);
-            if (user == null)
+            if (!IsValidUser())
             {
                 return BadRequest(Constants.Messages.InvalidRequest);
             }
 
             var originalItem = _itemService.GetById(id);
             if (originalItem == null
-                || originalItem.UserId != user.Id)
+                || originalItem.UserId != DbUser.Id)
             {
                 return BadRequest(Constants.Messages.UnauthorizeUpdate);
             }
@@ -108,7 +106,7 @@ namespace Codetecuico.Byns.Api.Controllers
             }
 
             var updatedItem = MapperHelper.Map(item, originalItem);
-            updatedItem.ModifiedBy = user.Id;
+            updatedItem.ModifiedBy = DbUser.Id;
 
             var result = _itemService.Update(updatedItem);
 
@@ -127,16 +125,15 @@ namespace Codetecuico.Byns.Api.Controllers
             {
                 return BadRequest(Constants.Messages.InvalidRequest);
             }
-
-            var user = _userService.GetByExternalId(ClientId);
-            if (user == null)
+            
+            if (!IsValidUser())
             {
                 return BadRequest(Constants.Messages.InvalidRequest);
             }
 
             var item = _itemService.GetById(id);
             if (item == null
-                || item.UserId != user.Id)
+                || item.UserId != DbUser.Id)
             {
                 return BadRequest(Constants.Messages.UnauthorizeDelete);
             }
