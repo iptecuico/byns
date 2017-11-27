@@ -8,7 +8,7 @@ namespace Codetecuico.Byns.Api.Controllers
 {
     public class BaseController : ApiController
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
         private User _dbUser;
 
         public BaseController()
