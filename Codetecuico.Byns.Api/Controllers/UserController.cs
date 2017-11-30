@@ -1,6 +1,7 @@
 ﻿using Codetecuico.Byns.Api.Helpers;
 using Codetecuico.Byns.Api.Models;
 using Codetecuico.Byns.Common.Core;
+using Codetecuico.Byns.Common.Domain;
 using Codetecuico.Byns.Service;
 using System.Web.Http;
 
@@ -36,7 +37,7 @@ namespace Codetecuico.Byns.Api.Controllers
             else
             {
                 //Create the user
-                user = new Common.Domain.User()
+                user = new User
                 {
                     ExternalId = ClientId
                 };

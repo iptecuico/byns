@@ -18,15 +18,19 @@ namespace Codetecuico.Byns.Data.Migrations
         {
             //Seed database
             if (!context.Users.Any())
+            {
                 GetInitialUsers().ForEach(data => context.Users.AddOrUpdate(data));
+            }
 
             if (!context.Items.Any())
+            {
                 GetInitialItems().ForEach(data => context.Items.AddOrUpdate(data));
+            }
 
             context.SaveChanges();
         }
 
-        private List<User> GetInitialUsers()
+        private static List<User> GetInitialUsers()
         {
             return new List<User>
             {
@@ -42,7 +46,7 @@ namespace Codetecuico.Byns.Data.Migrations
                 }
             };
         }
-        private List<Item> GetInitialItems()
+        private static List<Item> GetInitialItems()
         {
             return new List<Item>
             {

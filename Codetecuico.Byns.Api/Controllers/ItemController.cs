@@ -14,12 +14,10 @@ namespace Codetecuico.Byns.Api.Controllers
     public class ItemController : BaseController
     {
         private readonly IItemService _itemService;
-        private readonly IUserService _userService;
 
         public ItemController(IUserService userService, IItemService itemService) : base (userService)
         {
             _itemService = itemService;
-            _userService = userService;
         }
 
         [HttpGet]
@@ -38,8 +36,8 @@ namespace Codetecuico.Byns.Api.Controllers
 
             if (searchText != null)
             {
-                searchText = searchText.ToLower();
-                model = model.Where(x => x.Name.ToLower().Contains(searchText) || x.Description.ToLower().Contains(searchText));
+                searchText = searchText.ToLowerInvariant();
+                model = model.Where(x => x.Name.ToLowerInvariant().Contains(searchText) || x.Description.ToLowerInvariant().Contains(searchText));
             }
             model = model.OrderBy(x => x.Name)
                             .Select(x => x);
@@ -146,18 +144,6 @@ namespace Codetecuico.Byns.Api.Controllers
             }
 
             return Ok();
-        }
-
-        //[AllowAnonymous]
-        //[HttpGet]
-        //[Route("api/item/download")]
-        //public IHttpActionResult Download()
-        //{
-        //    var azureStorage = new AzureStorage();
-
-        //    azureStorage.Download();
-
-        //    return Ok();
-        //}
+        } 
     }
 }

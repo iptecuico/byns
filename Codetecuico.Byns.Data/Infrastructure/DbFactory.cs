@@ -12,7 +12,9 @@
         protected override void Dispose(bool disposing)
         {
             if (_dbContext != null)
+            {
                 _dbContext.Dispose();
+            }
 
             base.Dispose(disposing);
         }
