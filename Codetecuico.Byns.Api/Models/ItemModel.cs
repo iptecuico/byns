@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Codetecuico.Byns.Api.Models
 {
-    public class ItemModel
+    public class ItemModel 
     {
         public int Id { get; set; }
 

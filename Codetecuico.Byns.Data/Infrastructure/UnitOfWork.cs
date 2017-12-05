@@ -1,18 +1,17 @@
 ﻿namespace Codetecuico.Byns.Data.Infrastructure
 {
     public class UnitOfWork : IUnitOfWork
-    {
-        private readonly IDbFactory _dbFactory;
+    { 
         private BynsDbContext _dbContext;
 
-        public UnitOfWork(IDbFactory dbFactory)
+        public UnitOfWork(BynsDbContext dbContext)
         {
-            _dbFactory = dbFactory;
+            _dbContext = dbContext;
         }
 
         public BynsDbContext DbContext
         {
-            get { return _dbContext ?? (_dbContext = _dbFactory.Init()); }
+            get { return _dbContext; }
         }
 
         public bool Commit()

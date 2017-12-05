@@ -1,25 +1,25 @@
-﻿using Codetecuico.Byns.Common.Domain;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.ModelConfiguration;
+﻿using Codetecuico.Byns.Data.Entity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Codetecuico.Byns.Data.Configuration
 {
-    class ItemConfiguration : EntityTypeConfiguration<Item>
+    internal class ItemConfiguration : IEntityTypeConfiguration<Item>
     {
-        public ItemConfiguration()
+        public void Configure(EntityTypeBuilder<Item> builder)
         {
-            ToTable("Items");
-            HasKey(x => x.Id);
-            Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            Property(x => x.Name).IsRequired().HasMaxLength(100);
-            Property(x => x.Description).IsRequired().HasMaxLength(500);
-            Property(x => x.Currency).HasMaxLength(10);
-            Property(x => x.Category).HasMaxLength(50);
-            Property(x => x.Condition).HasMaxLength(50);
-            Property(x => x.Status).HasMaxLength(20);
-            Property(x => x.Remarks).HasMaxLength(500);
+            //builder.ToTable("Items");
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
+            builder.Property(x => x.Description).IsRequired().HasMaxLength(500);
+            builder.Property(x => x.Currency).HasMaxLength(10);
+            builder.Property(x => x.Category).HasMaxLength(50);
+            builder.Property(x => x.Condition).HasMaxLength(50);
+            builder.Property(x => x.Status).HasMaxLength(20);
+            builder.Property(x => x.Remarks).HasMaxLength(1500);
 
-            HasRequired(x => x.User);
+            //.HasRequired(x => x.User);
         }
     }
 }

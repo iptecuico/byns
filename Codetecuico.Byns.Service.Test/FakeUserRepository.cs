@@ -1,4 +1,4 @@
-﻿using Codetecuico.Byns.Common.Domain;
+﻿using Codetecuico.Byns.Data.Entity;
 using Codetecuico.Byns.Data.Repositories;
 using System;
 using System.Collections.Generic;

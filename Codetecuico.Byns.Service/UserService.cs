@@ -1,7 +1,7 @@
 ﻿using System;
-using Codetecuico.Byns.Common.Domain;
 using Codetecuico.Byns.Data.Repositories;
 using Codetecuico.Byns.Data.Infrastructure;
+using Codetecuico.Byns.Data.Entity;
 
 namespace Codetecuico.Byns.Service
 {

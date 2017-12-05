@@ -1,22 +1,22 @@
-﻿using Codetecuico.Byns.Common.Domain;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.ModelConfiguration;
+﻿using Codetecuico.Byns.Data.Entity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Codetecuico.Byns.Data.Configuration
 {
-    class UserConfiguration : EntityTypeConfiguration<User>
+    class UserConfiguration : IEntityTypeConfiguration<User>
     {
-        public UserConfiguration()
+        public void Configure(EntityTypeBuilder<User> builder)
         {
-            ToTable("Users");
-            HasKey(x => x.Id);
-            Property(x => x.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            Property(x => x.Username).HasMaxLength(20);
-            Property(x => x.FirstName).HasMaxLength(50);
-            Property(x => x.LastName).HasMaxLength(50);
-            Property(x => x.Email).HasMaxLength(50);
-            Property(x => x.PersonalWebsite).HasMaxLength(50);
-            Property(x => x.MobileNumber).HasMaxLength(20);
+            //ToTable("Users");
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
+            builder.Property(x => x.Username).HasMaxLength(20);
+            builder.Property(x => x.FirstName).HasMaxLength(50);
+            builder.Property(x => x.LastName).HasMaxLength(50);
+            builder.Property(x => x.Email).HasMaxLength(50);
+            builder.Property(x => x.PersonalWebsite).HasMaxLength(50);
+            builder.Property(x => x.MobileNumber).HasMaxLength(20);
         }
     }
 }

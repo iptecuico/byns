@@ -1,18 +1,19 @@
 ﻿using Codetecuico.Byns.Api.Helpers;
 using Codetecuico.Byns.Api.Models;
 using Codetecuico.Byns.Common.Core;
-using Codetecuico.Byns.Common.Domain;
+using Codetecuico.Byns.Data.Entity;
 using Codetecuico.Byns.Service;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Codetecuico.Byns.Api.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    [Route("api/user")]
     public class UserController : BaseController
     {
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService) : base (userService)
+        public UserController(IUserService userService) : base(userService)
         {
             _userService = userService;
         }
@@ -21,9 +22,8 @@ namespace Codetecuico.Byns.Api.Controllers
         /// Get logged user info and create if doesn't exist
         /// </summary>
         /// <returns>Existing user or newly created user</returns>
-        [HttpGet]
-        [Route("api/user/me")]
-        public IHttpActionResult Me()
+        [HttpGet("me")]
+        public IActionResult Me()
         {
             var user = DbUser;
             UserModel model = null;
@@ -46,16 +46,16 @@ namespace Codetecuico.Byns.Api.Controllers
 
                 if (user == null)
                 {
-                    return Conflict();
+                    return BadRequest();
                 }
                 model = MapperHelper.Map(user);
 
-                return Created<UserModel>(string.Empty, model);
+                return Created(string.Empty, model);
             }
         }
 
         [HttpGet]
-        public IHttpActionResult Get()
+        public IActionResult Get()
         {
             var user = DbUser;
             if (user == null)
@@ -69,7 +69,7 @@ namespace Codetecuico.Byns.Api.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Put([FromUri]int id, [FromBody]UserModel user)
+        public IActionResult Put(int id, [FromBody]UserModel user)
         {
             var currentUser = DbUser;
             if (currentUser == null)
@@ -94,14 +94,14 @@ namespace Codetecuico.Byns.Api.Controllers
 
             if (!result)
             {
-                return Conflict();
+                return BadRequest();
             }
 
             return Ok();
         }
 
         [HttpPost]
-        public IHttpActionResult Post([FromBody]UserModel user)
+        public IActionResult Post([FromBody]UserModel user)
         {
             if (!ModelState.IsValid)
             {
@@ -118,12 +118,12 @@ namespace Codetecuico.Byns.Api.Controllers
 
             if (returnUser == null)
             {
-                return Conflict();
+                return BadRequest();
             }
 
             var returnModel = MapperHelper.Map(returnUser);
 
-            return Created<UserModel>(string.Empty, returnModel);
+            return Created(string.Empty, returnModel);
         }
     }
 }

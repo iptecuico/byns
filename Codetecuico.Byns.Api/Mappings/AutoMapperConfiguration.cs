@@ -2,9 +2,9 @@
 
 namespace Codetecuico.Byns.Api.Mappings
 {
-    public static class AutoMapperConfiguration
+    public class AutoMapperConfiguration
     {
-        public static void Configure()
+        public static void Initialize()
         {
             Mapper.Initialize(x =>
             {

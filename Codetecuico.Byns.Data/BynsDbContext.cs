@@ -1,26 +1,33 @@
-﻿using Codetecuico.Byns.Common.Domain;
+﻿using Codetecuico.Byns.Data.Entity;
 using Codetecuico.Byns.Data.Configuration;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Codetecuico.Byns.Data
 {
     public class BynsDbContext : DbContext
     {
-        public BynsDbContext() : base("DefaultConnection")
+        public BynsDbContext()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<BynsDbContext, Migrations.Configuration>("DefaultConnection"));
+
+        }
+        public BynsDbContext(DbContextOptions<BynsDbContext> options) : base(options)
+        {
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<BynsDbContext, Migrations.Configuration>("DefaultConnection"));
             //Database.SetInitializer(new DropCreateDatabaseAlways<BynsDbContext>());
-            Configuration.LazyLoadingEnabled = false;
+            //Configuration.LazyLoadingEnabled = false;
+            Database.EnsureCreated();
         }
 
         public DbSet<Item> Items { get; set; }
         public DbSet<Member> Members { get; set; }
         public DbSet<User> Users { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new UserConfiguration());
-            modelBuilder.Configurations.Add(new ItemConfiguration());
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new ItemConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
     }
 }

@@ -4,8 +4,4 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Codetecuico.Byns.Data\Codetecuico.Byns.Data.csproj" />
-  </ItemGroup>
-
 </Project>

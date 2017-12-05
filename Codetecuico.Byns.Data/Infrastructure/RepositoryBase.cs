@@ -1,18 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Codetecuico.Byns.Data.Infrastructure
 {
     public abstract class RepositoryBase<T> where T : class
     {
-        private BynsDbContext _dbContext;
-        private readonly IDbFactory _dbFactory;
-        private readonly IDbSet<T> _dbSet;
+        private BynsDbContext _dbContext; 
+        private readonly DbSet<T> _dbSet;
 
-        protected RepositoryBase(IDbFactory dbFactory)
+        protected RepositoryBase(BynsDbContext dbContext)
         {
-            _dbFactory = dbFactory;
+            _dbContext = dbContext; 
             _dbSet = DbContext.Set<T>();
         }
 
@@ -20,7 +19,7 @@ namespace Codetecuico.Byns.Data.Infrastructure
         {
             get
             {
-                return _dbContext ?? (_dbContext = _dbFactory.Init());
+                return _dbContext;
             }
         }
 
@@ -34,10 +33,10 @@ namespace Codetecuico.Byns.Data.Infrastructure
             return _dbSet.Select(x => x);
         }
 
-        public virtual T Add(T entity)
-        {
-            return _dbSet.Add(entity);
-        }
+        //public virtual T Add(T entity)
+        //{
+        //    return _dbSet.Add(entity);
+        //}
 
         public virtual void Update(T entity)
         {

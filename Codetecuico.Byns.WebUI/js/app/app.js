@@ -630,7 +630,7 @@
 }());
 (function () {
     var apiService = function ($resource, $location) {
-        var baseUrlDev = "http://localhost:14303/api";
+        var baseUrlDev = "http://localhost:49683/api";
         var baseUrlProd = "https://bynsapi.azurewebsites.net/api";
         var baseUrl = baseUrlProd;
 

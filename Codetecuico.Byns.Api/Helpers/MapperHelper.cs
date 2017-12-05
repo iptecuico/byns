@@ -1,8 +1,7 @@
-﻿using Codetecuico.Byns.Api.Models;
-using Codetecuico.Byns.Common.Domain;
+﻿using Codetecuico.Byns.Api.Models; 
 using AutoMapper;
 using System.Collections.Generic;
-using System;
+using Codetecuico.Byns.Data.Entity;
 
 namespace Codetecuico.Byns.Api.Helpers
 {

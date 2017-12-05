@@ -1,16 +1,24 @@
-﻿using System.Configuration;
-using System.Web.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace Codetecuico.Byns.Api.Controllers
 {
+    [Route("api/app/")]
     public class AppController : BaseController
     {
-        [AllowAnonymous]
-        [HttpGet]
-        [Route("api/app/version")]
-        public IHttpActionResult Get()
+        private IConfiguration _configuration;
+
+        public AppController(IConfiguration configuration)
         {
-            var version = ConfigurationManager.AppSettings["AppVersion"].ToString();
+            _configuration = configuration;
+        }
+
+        [AllowAnonymous]
+        [HttpGet("version")]
+        public IActionResult Get()
+        {
+            var version = _configuration.GetValue<string>("AppVersion");
 
             return Ok(new { AppVersion = version });
         }

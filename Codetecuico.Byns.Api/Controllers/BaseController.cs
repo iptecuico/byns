@@ -1,12 +1,10 @@
-﻿using Codetecuico.Byns.Common.Domain;
+﻿using Codetecuico.Byns.Data.Entity;
 using Codetecuico.Byns.Service;
-using System.Linq;
-using System.Security.Claims;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Codetecuico.Byns.Api.Controllers
 {
-    public class BaseController : ApiController
+    public class BaseController : Controller
     {
         private readonly IUserService _userService;
         private User _dbUser;
@@ -24,12 +22,13 @@ namespace Codetecuico.Byns.Api.Controllers
         {
             get
             {
-                var id = ClaimsPrincipal.Current.Claims
-                           .Where(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")
-                           .Select(x => x.Value)
-                           .FirstOrDefault();
+                var user = User;
+                //var id = ClaimsPrincipal.Current.Claims
+                //           .Where(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")
+                //           .Select(x => x.Value)
+                //           .FirstOrDefault();
 
-                return id;
+                return "google-oauth2|114343767643441344703";
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using Codetecuico.Byns.Data.Infrastructure;
+﻿using Codetecuico.Byns.Data;
+using Codetecuico.Byns.Data.Infrastructure;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Codetecuico.Byns.Service.Test
@@ -7,9 +8,8 @@ namespace Codetecuico.Byns.Service.Test
     public class UserServiceTest
     {
         private IUserService CreateUserServiceWithFakeRepository()
-        {
-            var dbFactory = new DbFactory();
-            var unitOfWork = new UnitOfWork(dbFactory);
+        { 
+            var unitOfWork = new UnitOfWork(new BynsDbContext());
             var repository = new FakeUserRepository();
             IUserService userService = new UserService(repository, unitOfWork);
 

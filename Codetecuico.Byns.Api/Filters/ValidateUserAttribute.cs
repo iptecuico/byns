@@ -1,20 +1,19 @@
-﻿using System;
-using System.Web.Http.Controllers;
-using System.Web.Http.Filters;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
+using System;
 
 namespace Codetecuico.Byns.Api.Filters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class ValidateUserAttribute : ActionFilterAttribute
     {
-        public override void OnActionExecuting(HttpActionContext actionContext)
+        public override void OnActionExecuted(ActionExecutedContext context)
         {
-            base.OnActionExecuting(actionContext);
+            base.OnActionExecuted(context);
         }
 
-        public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
-            base.OnActionExecuted(actionExecutedContext);
+            base.OnActionExecuting(context);
         }
     }
 }

@@ -1,20 +1,19 @@
-﻿using Codetecuico.Byns.Common.Domain;
+﻿using Codetecuico.Byns.Data.Entity;
 using Codetecuico.Byns.Data.Infrastructure;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace Codetecuico.Byns.Data.Repositories
 {
-    public interface IUserRepository : IRepository<User>
-    {
-        //user specific methods
-        User GetByExternalId(string id);
-    }
-
     public class UserRepository : RepositoryBase<User>, IUserRepository
     {
-        public UserRepository(IDbFactory dbFactory) : base(dbFactory)
+        public UserRepository(BynsDbContext dbContext) : base(dbContext)
         { }
+
+        public User Add(User entity)
+        {
+            throw new System.NotImplementedException();
+        }
 
         public User GetByExternalId(string id)
         {

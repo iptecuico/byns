@@ -1,5 +1,5 @@
-﻿using System;
-using System.Runtime.Caching;
+﻿using Microsoft.Extensions.Caching.Memory;
+using System;
 
 namespace Codetecuico.Byns.Common.Core
 {
@@ -7,15 +7,15 @@ namespace Codetecuico.Byns.Common.Core
     {
         private readonly int cacheExpiration = 60;
 
-        public T GetOrSet<T>(string cacheKey, Func<T> getItemCallback) where T : class
-        {
-            var item = MemoryCache.Default.Get(cacheKey) as T;
-            if (item == null)
-            {
-                item = getItemCallback();
-                MemoryCache.Default.Add(cacheKey, item, DateTime.Now.AddMinutes(cacheExpiration));
-            }
-            return item;
-        }
+        //public T GetOrSet<T>(string cacheKey, Func<T> getItemCallback) where T : class
+        //{
+        //    var item = MemoryCache.Default.Get(cacheKey) as T;
+        //    if (item == null)
+        //    {
+        //        item = getItemCallback();
+        //        MemoryCache.Default.Add(cacheKey, item, DateTime.Now.AddMinutes(cacheExpiration));
+        //    }
+        //    return item;
+        //}
     }
 }

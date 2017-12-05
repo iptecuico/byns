@@ -1,20 +1,20 @@
-﻿using Codetecuico.Byns.Common.Domain;
+﻿using Codetecuico.Byns.Data.Entity;
 using Codetecuico.Byns.Data.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 
 namespace Codetecuico.Byns.Data.Repositories
 {
-    public interface IItemRepository : IRepository<Item>
-    {
-        //item specific methods
-    }
-
     public class ItemRepository : RepositoryBase<Item>, IItemRepository
     {
-        public ItemRepository(IDbFactory dbFactory) : base(dbFactory)
+        public ItemRepository(BynsDbContext dbContext) : base(dbContext)
         { }
+
+        public Item Add(Item entity)
+        {
+            return null;// DbContext.Add(entity);
+        }
 
         public override IEnumerable<Item> GetAll()
         {

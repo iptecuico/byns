@@ -1,28 +1,29 @@
 ﻿using Codetecuico.Byns.Api.Filters;
 using Codetecuico.Byns.Api.Helpers;
 using Codetecuico.Byns.Api.Models;
-using Codetecuico.Byns.Common.AzureStorage;
 using Codetecuico.Byns.Common.Core;
 using Codetecuico.Byns.Service;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
-using System.Web.Http;
 
 namespace Codetecuico.Byns.Api.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    [Route("api/item")]
     public class ItemController : BaseController
     {
         private readonly IItemService _itemService;
 
-        public ItemController(IUserService userService, IItemService itemService) : base (userService)
+        public ItemController(IUserService userService, IItemService itemService) : base(userService)
         {
             _itemService = itemService;
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public IHttpActionResult Get(int pageNumber, int pageSize = 5, string searchText = "")
+        public IActionResult Get(int pageNumber, int pageSize = 5, string searchText = "")
         {
             if (pageNumber <= 0
                 || pageSize <= 0
@@ -55,7 +56,7 @@ namespace Codetecuico.Byns.Api.Controllers
 
         [HttpPost]
         [ValidateUser]
-        public IHttpActionResult Post([FromBody]ItemModel item)
+        public IActionResult Post([FromBody]ItemModel item)
         {
             if (!IsValidUser()
                 || !ModelState.IsValid
@@ -73,16 +74,16 @@ namespace Codetecuico.Byns.Api.Controllers
 
             if (newItem == null)
             {
-                return Conflict();
+                return BadRequest();
             }
 
             var returnItem = MapperHelper.Map(newItem);
 
-            return Created<ItemModel>(string.Empty, returnItem);
+            return Created(string.Empty, returnItem);
         }
 
         [HttpPut]
-        public IHttpActionResult Put([FromUri]int id, [FromBody]ItemModel item)
+        public IActionResult Put(int id, [FromBody]ItemModel item)
         {
             if (!IsValidUser())
             {
@@ -110,20 +111,20 @@ namespace Codetecuico.Byns.Api.Controllers
 
             if (!result)
             {
-                return Conflict();
+                return BadRequest();
             }
 
             return Ok();
         }
 
         [HttpDelete]
-        public IHttpActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             if (id <= 0)
             {
                 return BadRequest(Constants.Messages.InvalidRequest);
             }
-            
+
             if (!IsValidUser())
             {
                 return BadRequest(Constants.Messages.InvalidRequest);
@@ -140,10 +141,10 @@ namespace Codetecuico.Byns.Api.Controllers
 
             if (!result)
             {
-                return Conflict();
+                return BadRequest();
             }
 
             return Ok();
-        } 
+        }
     }
 }

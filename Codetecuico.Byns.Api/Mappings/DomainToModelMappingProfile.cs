@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Codetecuico.Byns.Api.Models;
-using Codetecuico.Byns.Common.Domain;
+using Codetecuico.Byns.Data.Entity;
 
 namespace Codetecuico.Byns.Api.Mappings
 {
@@ -10,7 +10,7 @@ namespace Codetecuico.Byns.Api.Mappings
         {
             CreateMap<User, UserModel>();
             CreateMap<Item, ItemModel>()
-                .ForMember(x => x.Username, x => x.MapFrom(m => m.User.Username));
+                .ForMember(to => to.Username, from => from.MapFrom(m => m.User.Username));
         }
     }
 }
