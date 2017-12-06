@@ -20,8 +20,6 @@ namespace Codetecuico.Byns.Service
         public User Add(User user)
         {
             user.DateRegistered = DateTime.Now;
-            user.DateCreated = DateTime.Now;
-            user.DateModified = DateTime.Now;
 
             var result = _userRepository.Add(user);
 
@@ -45,7 +43,6 @@ namespace Codetecuico.Byns.Service
 
         public bool Update(User user)
         {
-            user.DateModified = DateTime.Now;
             _userRepository.Update(user);
 
             return _unitOfWork.Commit();

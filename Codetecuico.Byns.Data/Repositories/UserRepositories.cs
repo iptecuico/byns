@@ -12,7 +12,8 @@ namespace Codetecuico.Byns.Data.Repositories
 
         public User GetByExternalId(string id)
         {
-            var user = DbContext.Users.Where(x => x.ExternalId.Equals(id)).FirstOrDefault();
+            var user = DbContext.Users
+                                .FirstOrDefault(x => x.ExternalId.Equals(id));
 
             return user;
         }
@@ -24,7 +25,6 @@ namespace Codetecuico.Byns.Data.Repositories
 
             DbContext.Entry(user).Property(x => x.ExternalId).IsModified = false;
             DbContext.Entry(user).Property(x => x.DateRegistered).IsModified = false;
-            DbContext.Entry(user).Property(x => x.DateCreated).IsModified = false;
             DbContext.Entry(user).Property(x => x.CreatedBy).IsModified = false;
         }
 

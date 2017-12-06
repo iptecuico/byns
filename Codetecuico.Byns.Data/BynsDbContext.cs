@@ -1,6 +1,8 @@
 ﻿using Codetecuico.Byns.Data.Entity;
 using Codetecuico.Byns.Data.Configuration;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System;
 
 namespace Codetecuico.Byns.Data
 {
@@ -26,7 +28,30 @@ namespace Codetecuico.Byns.Data
             modelBuilder.ApplyConfiguration(new ItemConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
 
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                modelBuilder.Entity(entityType.Name).Property<DateTime>("DateCreated");
+                modelBuilder.Entity(entityType.Name).Property<DateTime>("DateModified");
+            }
+
             base.OnModelCreating(modelBuilder);
+        }
+
+        public override int SaveChanges()
+        {
+            foreach (var entry in ChangeTracker.Entries()
+                                                .Where(e => e.State == EntityState.Added
+                                                            || e.State == EntityState.Modified))
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Property("DateCreated").CurrentValue = DateTime.Now;
+                }
+
+                entry.Property("DateModified").CurrentValue = DateTime.Now;
+            }
+
+            return base.SaveChanges();
         }
     }
 }

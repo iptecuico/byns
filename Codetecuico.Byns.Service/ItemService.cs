@@ -20,8 +20,6 @@ namespace Codetecuico.Byns.Service
         public Item Add(Item item)
         {
             item.DatePosted = DateTime.Now;
-            item.DateCreated = DateTime.Now;
-            item.DateModified = DateTime.Now;
 
             var result = _itemRepository.Add(item);
 
@@ -59,7 +57,6 @@ namespace Codetecuico.Byns.Service
 
         public bool Update(Item item)
         {
-            item.DateModified = DateTime.Now;
             _itemRepository.Update(item);
 
             return _unitOfWork.Commit();
