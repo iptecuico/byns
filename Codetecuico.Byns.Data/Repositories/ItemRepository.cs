@@ -11,11 +11,6 @@ namespace Codetecuico.Byns.Data.Repositories
         public ItemRepository(BynsDbContext dbContext) : base(dbContext)
         { }
 
-        public Item Add(Item entity)
-        {
-            return null;// DbContext.Add(entity);
-        }
-
         public override IEnumerable<Item> GetAll()
         {
             return DbContext.Items

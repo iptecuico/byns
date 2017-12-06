@@ -11,7 +11,7 @@ namespace Codetecuico.Byns.Data.Infrastructure
 
         protected RepositoryBase(BynsDbContext dbContext)
         {
-            _dbContext = dbContext; 
+            _dbContext = dbContext;
             _dbSet = DbContext.Set<T>();
         }
 
@@ -33,10 +33,10 @@ namespace Codetecuico.Byns.Data.Infrastructure
             return _dbSet.Select(x => x);
         }
 
-        //public virtual T Add(T entity)
-        //{
-        //    return _dbSet.Add(entity);
-        //}
+        public virtual T Add(T entity)
+        {
+            return _dbSet.Add(entity).Entity;
+        }
 
         public virtual void Update(T entity)
         {

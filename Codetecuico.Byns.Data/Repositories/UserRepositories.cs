@@ -10,11 +10,6 @@ namespace Codetecuico.Byns.Data.Repositories
         public UserRepository(BynsDbContext dbContext) : base(dbContext)
         { }
 
-        public User Add(User entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public User GetByExternalId(string id)
         {
             var user = DbContext.Users.Where(x => x.ExternalId.Equals(id)).FirstOrDefault();

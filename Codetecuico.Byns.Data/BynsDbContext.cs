@@ -7,9 +7,8 @@ namespace Codetecuico.Byns.Data
     public class BynsDbContext : DbContext
     {
         public BynsDbContext()
-        {
+        { }
 
-        }
         public BynsDbContext(DbContextOptions<BynsDbContext> options) : base(options)
         {
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<BynsDbContext, Migrations.Configuration>("DefaultConnection"));
@@ -24,10 +23,10 @@ namespace Codetecuico.Byns.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
             modelBuilder.ApplyConfiguration(new ItemConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
