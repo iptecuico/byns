@@ -11,9 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "30 Data Access Layer", "30 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "40 Common", "40 Common", "{28892733-F25F-4482-8DEE-DB584E2A4E6F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "60 Test", "60 Test", "{26C300EE-8237-4B38-8B04-A34DD3794A44}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "50 Batch", "50 Batch", "{098FC16F-D5A3-4CDA-90B8-F77EBD6320CB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "90 Test", "90 Test", "{26C300EE-8237-4B38-8B04-A34DD3794A44}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codetecuico.Byns.WebUI", "Codetecuico.Byns.WebUI\Codetecuico.Byns.WebUI.csproj", "{DC41E801-2FE7-4086-93D3-F0E908473A0E}"
 EndProject
@@ -27,9 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codetecuico.Byns.Data", "Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codetecuico.Byns.Data.Entity", "Codetecuico.Byns.Data.Entity\Codetecuico.Byns.Data.Entity.csproj", "{E3A8CEC5-787E-4693-B540-C35D2CC86C9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codetecuico.Byns.Common.Core", "Codetecuico.Byns.Common.Core\Codetecuico.Byns.Common.Core.csproj", "{28F8BAA3-00C3-4EFB-A721-E2E5D0EDA523}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codetecuico.Byns.Common.Core", "Codetecuico.Byns.Common.Core\Codetecuico.Byns.Common.Core.csproj", "{28F8BAA3-00C3-4EFB-A721-E2E5D0EDA523}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codetecuico.Byns.Service.Test", "Codetecuico.Byns.Service.Test\Codetecuico.Byns.Service.Test.csproj", "{D783029A-969A-48FA-9FD8-4F7B203E7F60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codetecuico.Byns.Service.Test", "Codetecuico.Byns.Service.Test\Codetecuico.Byns.Service.Test.csproj", "{D783029A-969A-48FA-9FD8-4F7B203E7F60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

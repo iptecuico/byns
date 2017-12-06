@@ -14,9 +14,9 @@ namespace Codetecuico.Byns.Data
         public BynsDbContext(DbContextOptions<BynsDbContext> options) : base(options)
         {
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<BynsDbContext, Migrations.Configuration>("DefaultConnection"));
-            //Database.SetInitializer(new DropCreateDatabaseAlways<BynsDbContext>());
             //Configuration.LazyLoadingEnabled = false;
             Database.EnsureCreated();
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public DbSet<Item> Items { get; set; }
