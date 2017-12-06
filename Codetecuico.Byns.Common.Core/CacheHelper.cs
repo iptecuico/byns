@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Caching.Memory;
-using System;
-
-namespace Codetecuico.Byns.Common.Core
+﻿namespace Codetecuico.Byns.Common.Core
 {
     public class CacheHelper
     {
