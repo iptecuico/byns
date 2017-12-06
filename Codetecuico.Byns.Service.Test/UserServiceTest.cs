@@ -7,23 +7,21 @@ namespace Codetecuico.Byns.Service.Test
     [TestClass]
     public class UserServiceTest
     {
-        private IUserService CreateUserServiceWithFakeRepository()
-        { 
-            var unitOfWork = new UnitOfWork(new BynsDbContext());
-            var repository = new FakeUserRepository();
-            IUserService userService = new UserService(repository, unitOfWork);
+        private IUserService _userService;
 
-            return userService;
+        public UserServiceTest()
+        {
+            var repository = new FakeUserRepository();
+            _userService = new UserService(repository, null);
         }
 
         [TestMethod]
         public void GetByExternalId_ValidExternalId_ReturnUser()
         {
             //Arrange
-            var service = CreateUserServiceWithFakeRepository();
-
+            
             //Act
-            var user = service.GetByExternalId("");
+            var user = _userService.GetByExternalId("");
 
             //Assert
             Assert.AreEqual("TestUser", user.Username);

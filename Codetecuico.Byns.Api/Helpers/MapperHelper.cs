@@ -1,7 +1,8 @@
-﻿using Codetecuico.Byns.Api.Models; 
+﻿using Codetecuico.Byns.Api.Models;
 using AutoMapper;
 using System.Collections.Generic;
 using Codetecuico.Byns.Data.Entity;
+using System;
 
 namespace Codetecuico.Byns.Api.Helpers
 {
@@ -40,6 +41,11 @@ namespace Codetecuico.Byns.Api.Helpers
         internal static User Map(UserModel userModel, User user)
         {
             return Mapper.Map(userModel, user);
+        }
+
+        internal static IEnumerable<UserModel> Map(IEnumerable<User> users)
+        {
+            return Mapper.Map<IEnumerable<User>, IEnumerable<UserModel>>(users);
         }
     }
 }

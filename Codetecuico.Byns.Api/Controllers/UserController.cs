@@ -54,6 +54,15 @@ namespace Codetecuico.Byns.Api.Controllers
             }
         }
 
+        [HttpGet("all")]
+        public IActionResult GetAll()
+        {
+            var users = _userService.GetAll();
+            var model = MapperHelper.Map(users);
+
+            return Ok(model);
+        }
+
         [HttpGet]
         public IActionResult Get()
         {

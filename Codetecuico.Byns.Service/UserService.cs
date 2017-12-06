@@ -2,14 +2,10 @@
 using Codetecuico.Byns.Data.Repositories;
 using Codetecuico.Byns.Data.Infrastructure;
 using Codetecuico.Byns.Data.Entity;
+using System.Collections.Generic;
 
 namespace Codetecuico.Byns.Service
 {
-    public interface IUserService : IService<User>
-    {
-        User GetByExternalId(string id);
-    }
-
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
@@ -35,6 +31,11 @@ namespace Codetecuico.Byns.Service
             }
 
             return null;
+        }
+
+        public IEnumerable<User> GetAll()
+        {
+            return _userRepository.GetAll();
         }
 
         public User GetByExternalId(string id)

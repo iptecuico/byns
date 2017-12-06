@@ -6,13 +6,6 @@ using System.Collections.Generic;
 
 namespace Codetecuico.Byns.Service
 {
-    public interface IItemService : IService<Item>
-    {
-        IEnumerable<Item> GetAll();
-
-        bool Delete(int id);
-    }
-
     public class ItemService : IItemService
     {
         private readonly IItemRepository _itemRepository;
