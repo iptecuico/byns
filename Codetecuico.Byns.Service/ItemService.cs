@@ -1,6 +1,6 @@
-﻿using Codetecuico.Byns.Data.Entity;
-using Codetecuico.Byns.Data.Infrastructure;
+﻿using Codetecuico.Byns.Data.Infrastructure;
 using Codetecuico.Byns.Data.Repositories;
+using Codetecuico.Byns.Domain;
 using System;
 using System.Collections.Generic;
 

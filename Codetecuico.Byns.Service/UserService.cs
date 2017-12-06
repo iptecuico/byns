@@ -1,8 +1,8 @@
 ﻿using System;
 using Codetecuico.Byns.Data.Repositories;
 using Codetecuico.Byns.Data.Infrastructure;
-using Codetecuico.Byns.Data.Entity;
 using System.Collections.Generic;
+using Codetecuico.Byns.Domain;
 
 namespace Codetecuico.Byns.Service
 {

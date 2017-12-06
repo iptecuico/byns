@@ -1,5 +1,5 @@
 ﻿using Codetecuico.Byns.Data;
-using Codetecuico.Byns.Data.Entity;
+using Codetecuico.Byns.Domain;
 using Codetecuico.Byns.Data.Infrastructure;
 using Codetecuico.Byns.Data.Repositories;
 using Microsoft.EntityFrameworkCore;

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Codetecuico.Byns.Data.Entity\Codetecuico.Byns.Data.Entity.csproj" />
+    <ProjectReference Include="..\Codetecuico.Byns.Domain\Codetecuico.Byns.Domain.csproj" />
     <ProjectReference Include="..\Codetecuico.Byns.Data\Codetecuico.Byns.Data.csproj" />
     <ProjectReference Include="..\Codetecuico.Byns.Service\Codetecuico.Byns.Service.csproj" />
   </ItemGroup>

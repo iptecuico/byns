@@ -1,7 +1,7 @@
 ﻿using Codetecuico.Byns.Api.Helpers;
 using Codetecuico.Byns.Api.Models;
 using Codetecuico.Byns.Common.Core;
-using Codetecuico.Byns.Data.Entity;
+using Codetecuico.Byns.Domain;
 using Codetecuico.Byns.Service;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Codetecuico.Byns.Data.Entity
+﻿namespace Codetecuico.Byns.Domain
 {
     public abstract class BaseModel
     {

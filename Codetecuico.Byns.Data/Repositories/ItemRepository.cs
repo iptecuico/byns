@@ -1,5 +1,5 @@
-﻿using Codetecuico.Byns.Data.Entity;
-using Codetecuico.Byns.Data.Infrastructure;
+﻿using Codetecuico.Byns.Data.Infrastructure;
+using Codetecuico.Byns.Domain;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;

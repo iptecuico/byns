@@ -1,4 +1,4 @@
-﻿using Codetecuico.Byns.Data.Entity;
+﻿using Codetecuico.Byns.Domain;
 
 namespace Codetecuico.Byns.Service
 {

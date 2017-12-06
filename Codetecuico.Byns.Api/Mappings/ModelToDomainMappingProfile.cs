@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Codetecuico.Byns.Api.Models;
-using Codetecuico.Byns.Data.Entity;
+using Codetecuico.Byns.Domain;
 
 namespace Codetecuico.Byns.Api.Mappings
 {

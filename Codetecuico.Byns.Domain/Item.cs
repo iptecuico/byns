@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Codetecuico.Byns.Data.Entity
+namespace Codetecuico.Byns.Domain
 {
     public class Item: BaseModel
     {

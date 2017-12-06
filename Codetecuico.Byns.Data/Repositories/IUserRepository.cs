@@ -1,4 +1,4 @@
-﻿using Codetecuico.Byns.Data.Entity;
+﻿using Codetecuico.Byns.Domain;
 using Codetecuico.Byns.Data.Infrastructure;
 
 namespace Codetecuico.Byns.Data.Repositories
