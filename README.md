@@ -4,6 +4,12 @@
 
 http://byns.azurewebsites.net
 
+
+### Technology Stack
+- ASP.NET Core 2.0
+- Entity Framework Core 2.0.1
+- AngularJs
+
 <br>
 By codetecuico
 
