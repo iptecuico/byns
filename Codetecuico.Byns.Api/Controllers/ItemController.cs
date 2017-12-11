@@ -33,7 +33,6 @@ namespace Codetecuico.Byns.Api.Controllers
             }
 
             var model = MapperHelper.Map(_itemService.GetAll());
-            var skipCount = (pageNumber - 1) * pageSize;
 
             if (searchText != null)
             {
@@ -43,13 +42,7 @@ namespace Codetecuico.Byns.Api.Controllers
             model = model.OrderBy(x => x.Name)
                             .Select(x => x);
 
-            var pagedModel = new PagedModel<ItemModel>();
-            pagedModel.PageNumber = pageNumber;
-            pagedModel.PageSize = pageSize;
-            pagedModel.RecordCount = model.Count();
-            pagedModel.PageCount = (int)Math.Ceiling((double)pagedModel.RecordCount / pageSize);
-            pagedModel.Data = model.Skip(skipCount)
-                                    .Take(pageSize);
+            var pagedModel = PagedListHelper<ItemModel>.CreatePagedList(model, pageSize, pageNumber);
 
             return Ok(pagedModel);
         }
