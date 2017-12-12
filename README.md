@@ -6,9 +6,15 @@ http://byns.azurewebsites.net
 
 
 ### Technology Stack
-- ASP.NET Core 2.0
+- ASP.NET Core 2.0 Web API
 - Entity Framework Core 2.0.1
 - AngularJs
+
+#### 3rd Party Package/s
+- AutoMapper
+
+#### Design Pattern
+- Repository Pattern
 
 <br>
 By codetecuico
