@@ -10,9 +10,8 @@ namespace Codetecuico.Byns.Api.Helpers
         {
             if (searchString != null)
             {
-                searchString = searchString.ToLowerInvariant();
-                items = items.Where(x => x.Name.ToLowerInvariant().Contains(searchString) 
-                                    || x.Description.ToLowerInvariant().Contains(searchString));
+                return items.Where(x => x.Name.ToLowerInvariant().Contains(searchString.ToLowerInvariant()) 
+                                    || x.Description.ToLowerInvariant().Contains(searchString.ToLowerInvariant()));
             }
 
             return items;

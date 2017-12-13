@@ -8,7 +8,7 @@ namespace Codetecuico.Byns.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Item> builder)
         {
-            //builder.ToTable("Items");
+            builder.ToTable("Items");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
@@ -18,8 +18,7 @@ namespace Codetecuico.Byns.Data.Configuration
             builder.Property(x => x.Condition).HasMaxLength(50);
             builder.Property(x => x.Status).HasMaxLength(20);
             builder.Property(x => x.Remarks).HasMaxLength(1500);
-
-            //.HasRequired(x => x.User);
+            builder.Property(x => x.UserId).IsRequired();
         }
     }
 }
