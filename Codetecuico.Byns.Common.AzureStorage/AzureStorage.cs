@@ -14,7 +14,7 @@ namespace Codetecuico.Byns.Common.AzureStorage
             _container = "byns";
         }
 
-        public bool Upload(string path = "")
+        public bool Upload(string path)
         {
             // Retrieve storage account from connection string.
             var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting(_connectionString));
@@ -52,7 +52,7 @@ namespace Codetecuico.Byns.Common.AzureStorage
             var blockBlob = container.GetBlockBlobReference("xamarin.png");
 
             // Save blob contents to a file.
-            using (var fileStream = System.IO.File.OpenWrite(@"C:\Users\ian.peter.s.tecuico\Downloads\xamarin.png"))
+            using (var fileStream = System.IO.File.OpenWrite(@"C:\Users\iptecuico\Downloads\xamarin.png"))
             {
                 blockBlob.DownloadToStream(fileStream);
             }
