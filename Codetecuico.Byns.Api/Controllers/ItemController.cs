@@ -5,8 +5,6 @@ using Codetecuico.Byns.Common.Core;
 using Codetecuico.Byns.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Linq;
 
 namespace Codetecuico.Byns.Api.Controllers
 {
@@ -32,19 +30,14 @@ namespace Codetecuico.Byns.Api.Controllers
                 return BadRequest();
             }
 
-            var model = MapperHelper.Map(_itemService.GetAll());
+            var items = MapperHelper.Map(_itemService.GetAll());
 
-            if (searchText != null)
-            {
-                searchText = searchText.ToLowerInvariant();
-                model = model.Where(x => x.Name.ToLowerInvariant().Contains(searchText) || x.Description.ToLowerInvariant().Contains(searchText));
-            }
-            model = model.OrderBy(x => x.Name)
-                            .Select(x => x);
+            items = ItemHelper.ApplySearch(items, searchText);
+            items = ItemHelper.ApplyOrderBy(items);
 
-            var pagedModel = PagedListHelper<ItemModel>.CreatePagedList(model, pageSize, pageNumber);
+            var pagedItems = PagedListHelper<ItemModel>.CreatePagedList(items, pageNumber, pageSize);
 
-            return Ok(pagedModel);
+            return Ok(pagedItems);
         }
 
         [HttpPost]
