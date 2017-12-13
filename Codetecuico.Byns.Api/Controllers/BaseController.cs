@@ -22,11 +22,10 @@ namespace Codetecuico.Byns.Api.Controllers
         {
             get
             {
-                var user = User;
+                //var user = User;
                 //var id = ClaimsPrincipal.Current.Claims
-                //           .Where(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")
-                //           .Select(x => x.Value)
-                //           .FirstOrDefault();
+                //           .FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")
+                //           .Select(x => x.Value);
 
                 return "google-oauth2|114343767643441344703";
             }

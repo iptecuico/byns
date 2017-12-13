@@ -2,7 +2,7 @@
 {
     public class CacheHelper
     {
-        private readonly int cacheExpiration = 60;
+        //private readonly int cacheExpiration = 60;
 
         //public T GetOrSet<T>(string cacheKey, Func<T> getItemCallback) where T : class
         //{

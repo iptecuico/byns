@@ -7,7 +7,7 @@ namespace Codetecuico.Byns.Api.Controllers
     [Route("api/app/")]
     public class AppController : BaseController
     {
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
         public AppController(IConfiguration configuration)
         {

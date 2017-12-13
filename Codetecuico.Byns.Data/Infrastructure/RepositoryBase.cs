@@ -6,7 +6,7 @@ namespace Codetecuico.Byns.Data.Infrastructure
 {
     public abstract class RepositoryBase<T> where T : class
     {
-        private BynsDbContext _dbContext; 
+        private readonly BynsDbContext _dbContext; 
         private readonly DbSet<T> _dbSet;
 
         protected RepositoryBase(BynsDbContext dbContext)

@@ -2,7 +2,7 @@
 {
     public class UnitOfWork : IUnitOfWork
     { 
-        private BynsDbContext _dbContext;
+        private readonly BynsDbContext _dbContext;
 
         public UnitOfWork(BynsDbContext dbContext)
         {

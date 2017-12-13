@@ -11,7 +11,7 @@ namespace Codetecuico.Byns.Service.Test
     [TestClass]
     public class UserServiceTest
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
 
         public UserServiceTest()
         {
