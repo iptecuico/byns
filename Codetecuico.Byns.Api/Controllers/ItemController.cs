@@ -21,7 +21,7 @@ namespace Codetecuico.Byns.Api.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Get(int pageNumber, int pageSize = 5, string searchText = "")
+        public IActionResult GetItems(int pageNumber, int pageSize = 5, string searchText = "")
         {
             if (pageNumber <= 0
                 || pageSize <= 0
@@ -38,6 +38,19 @@ namespace Codetecuico.Byns.Api.Controllers
             var pagedItems = PagedListHelper<ItemModel>.CreatePagedList(items, pageNumber, pageSize);
 
             return Ok(pagedItems);
+        }
+
+        [HttpGet("{id}", Name = "GetItem")]
+        public IActionResult GetItem(int id)
+        {
+            if (id == 0)
+            {
+                return BadRequest();
+            }
+
+            var item = MapperHelper.Map(_itemService.GetById(id));
+
+            return Ok(item);
         }
 
         [HttpPost]
@@ -65,7 +78,7 @@ namespace Codetecuico.Byns.Api.Controllers
 
             var returnItem = MapperHelper.Map(newItem);
 
-            return Created(string.Empty, returnItem);
+            return CreatedAtRoute("GetItem", new { id = returnItem.Id }, returnItem);
         }
 
         [HttpPut]
