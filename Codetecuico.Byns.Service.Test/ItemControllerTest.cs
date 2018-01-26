@@ -34,11 +34,18 @@ namespace Codetecuico.Byns.Service.Test
 
         private void SeedInMemoryDb(BynsDbContext dbContext)
         {
+            if (!dbContext.Organizations.Any())
+            {
+                dbContext.Organizations.AddRange(new Organization { Id = new Guid("00000000-0000-0000-0000-000000000001"), Name = "Organization1" });
+                dbContext.SaveChanges();
+            }
+            if (!dbContext.Users.Any())
+            {
+                dbContext.Users.AddRange(new User { Id = 1, Username = "TestUser1", ExternalId = "1" });
+                dbContext.SaveChanges();
+            }
             if (!dbContext.Items.Any())
             {
-                dbContext.Organizations.AddRange(new Organization { Id = new Guid("00000000-0000-0000-0000-000000000001"), Name = "Organization1"});
-                dbContext.Users.AddRange( new User { Id = 1, Username = "TestUser1", ExternalId = "1" });
-
                 dbContext.Items.AddRange(new Item { Id = 1, Name = "Item 1", UserId = 1, OrganizationId = new Guid("00000000-0000-0000-0000-000000000001") }
                                         , new Item { Id = 2, Name = "Item 2", UserId = 1, OrganizationId = new Guid("00000000-0000-0000-0000-000000000001") }
                                         , new Item { Id = 3, Name = "Item 3", UserId = 1, OrganizationId = new Guid("00000000-0000-0000-0000-000000000001") });
