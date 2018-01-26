@@ -87,6 +87,12 @@ namespace Codetecuico.Byns.Api
 
             app.UseCors("AllowAllHeaders");
             app.UseMvc();
+
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<BynsDbContext>();
+                context.Database.Migrate();
+            }
         }
     }
 }

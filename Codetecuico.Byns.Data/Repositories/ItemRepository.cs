@@ -15,6 +15,7 @@ namespace Codetecuico.Byns.Data.Repositories
         {
             return DbContext.Items
                             .Include(u => u.User)
+                            .Include(o => o.Organization)
                             .Select(x => x);
         }
 

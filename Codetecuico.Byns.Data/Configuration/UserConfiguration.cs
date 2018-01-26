@@ -17,6 +17,10 @@ namespace Codetecuico.Byns.Data.Configuration
             builder.Property(x => x.Email).HasMaxLength(50);
             builder.Property(x => x.PersonalWebsite).HasMaxLength(50);
             builder.Property(x => x.MobileNumber).HasMaxLength(20);
+            builder.HasOne(x => x.Organization)
+                        .WithMany(x => x.Users)
+                        .HasForeignKey(x => x.OrganizationId)
+                        .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

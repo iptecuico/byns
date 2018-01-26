@@ -18,7 +18,14 @@ namespace Codetecuico.Byns.Data.Configuration
             builder.Property(x => x.Condition).HasMaxLength(50);
             builder.Property(x => x.Status).HasMaxLength(20);
             builder.Property(x => x.Remarks).HasMaxLength(1500);
-            builder.Property(x => x.UserId).IsRequired();
+            builder.HasOne(x => x.User)
+                        .WithMany(x => x.Items)
+                        .HasForeignKey(x => x.UserId)
+                        .OnDelete(DeleteBehavior.ClientSetNull);
+            builder.HasOne(x => x.Organization)
+                        .WithMany(x => x.Items)
+                        .HasForeignKey(x => x.OrganizationId)
+                        .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

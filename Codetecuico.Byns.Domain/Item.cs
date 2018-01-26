@@ -19,7 +19,10 @@ namespace Codetecuico.Byns.Domain
         public bool IsSold { get; set; }
         public string Remarks { get; set; }
         public int UserId { get; set; }
+        public Guid OrganizationId { get; set; }
+
 
         public virtual User User { get; set; }
+        public virtual Organization Organization { get; set; }
     }
 }
