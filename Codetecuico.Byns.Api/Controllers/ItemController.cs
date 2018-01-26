@@ -55,7 +55,7 @@ namespace Codetecuico.Byns.Api.Controllers
 
         [HttpPost]
         [ValidateUser]
-        public IActionResult Post([FromBody]ItemModel item)
+        public IActionResult Post([FromBody]ItemForCreationModel item)
         {
             if (!IsValidUser()
                 || !ModelState.IsValid
@@ -82,7 +82,7 @@ namespace Codetecuico.Byns.Api.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(int id, [FromBody]ItemModel item)
+        public IActionResult Put(int id, [FromBody]ItemForUpdateModel item)
         {
             if (!IsValidUser())
             {

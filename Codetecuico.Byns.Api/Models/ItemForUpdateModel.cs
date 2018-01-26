@@ -2,7 +2,7 @@
 
 namespace Codetecuico.Byns.Api.Models
 {
-    public class ItemForCreationModel
+    public class ItemForUpdateModel
     {
         [Required]
         public string Name { get; set; }

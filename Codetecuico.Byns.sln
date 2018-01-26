@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codetecuico.Byns.Service.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codetecuico.Byns.Domain", "Codetecuico.Byns.Domain\Codetecuico.Byns.Domain.csproj", "{276F8E76-CCDA-42A1-8DDB-1190B9BDABE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codetecuico.Byns.WebUI.Angular", "Codetecuico.Byns.WebUI.Angular\Codetecuico.Byns.WebUI.Angular.csproj", "{B8286D23-18EB-4DCC-9377-4A204183E217}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codetecuico.Byns.WebUI.Angular", "Codetecuico.Byns.WebUI.Angular\Codetecuico.Byns.WebUI.Angular.csproj", "{B8286D23-18EB-4DCC-9377-4A204183E217}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
