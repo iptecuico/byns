@@ -5,6 +5,7 @@ using Codetecuico.Byns.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using System;
 
 namespace Codetecuico.Byns.Service.Test
 {
@@ -31,9 +32,10 @@ namespace Codetecuico.Byns.Service.Test
         {
             if (!dbContext.Users.Any())
             {
-                dbContext.Users.AddRange(new User { Id = 1, Username = "TestUser1", ExternalId = "1" }
-                                        , new User { Id = 2, Username = "TestUser2", ExternalId = "2" }
-                                        , new User { Id = 3, Username = "TestUser3", ExternalId = "3" });
+                dbContext.Organizations.AddRange(new Organization { Id = new Guid("00000000-0000-0000-0000-000000000001"), Name = "Organization1" });
+                dbContext.Users.AddRange(new User { Id = 1, Username = "TestUser1", ExternalId = "1", OrganizationId = new Guid("00000000-0000-0000-0000-000000000001") }
+                                        , new User { Id = 2, Username = "TestUser2", ExternalId = "2", OrganizationId = new Guid("00000000-0000-0000-0000-000000000001") }
+                                        , new User { Id = 3, Username = "TestUser3", ExternalId = "3", OrganizationId = new Guid("00000000-0000-0000-0000-000000000001") });
                 dbContext.SaveChanges();
             }
         }
