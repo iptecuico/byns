@@ -52,9 +52,9 @@ namespace Codetecuico.Byns.Service.Test
             }
             if (!dbContext.Items.Any())
             {
-                dbContext.Items.AddRange(new Item { Id = 1, Name = "Item 1", UserId = 1, OrganizationId = new Guid("00000000-0000-0000-0000-000000000001") }
-                                        , new Item { Id = 2, Name = "Item 2", UserId = 1, OrganizationId = new Guid("00000000-0000-0000-0000-000000000001") }
-                                        , new Item { Id = 3, Name = "Item 3", UserId = 1, OrganizationId = new Guid("00000000-0000-0000-0000-000000000001") });
+                dbContext.Items.AddRange(new Item { Id = 1, Name = "Item 1", Remarks = "na", UserId = 1, OrganizationId = new Guid("00000000-0000-0000-0000-000000000001") }
+                                        , new Item { Id = 2, Name = "Item 2", Remarks = "na", UserId = 1, OrganizationId = new Guid("00000000-0000-0000-0000-000000000001") }
+                                        , new Item { Id = 3, Name = "Item 3", Remarks = "na", UserId = 1, OrganizationId = new Guid("00000000-0000-0000-0000-000000000001") });
                 dbContext.SaveChanges();
             }
         }
@@ -72,13 +72,15 @@ namespace Codetecuico.Byns.Service.Test
         public void UpdateItem()
         {
             //Arrange
+            var userId = 1;
             var itemId = 1;
             var itemName = "Item 1 - Updated";
+            var itemDescription = "Item Description 1 - Updated";
 
             var item = new ItemForUpdateModel()
             {
                 Name = itemName,
-                Description = "Item Description 1 - Updated"
+                Description = itemDescription
             };
 
             //Act
@@ -87,6 +89,8 @@ namespace Codetecuico.Byns.Service.Test
 
             //Assert
             Assert.AreEqual(itemName, returnItem.Name);
+            Assert.AreEqual(itemDescription, returnItem.Description);
+            Assert.AreEqual(userId, returnItem.UserId);
         }
 
     }
