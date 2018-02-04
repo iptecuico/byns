@@ -18,6 +18,13 @@ namespace Codetecuico.Byns.Service.Test
     {
         private readonly ItemController _itemController;
 
+        [ClassInitialize]
+        public static void Initialize(TestContext context)
+        {
+            //Called once per class
+            AutoMapperConfiguration.Initialize();
+        }
+
         public ItemControllerTest()
         {
             var options = new DbContextOptionsBuilder<BynsDbContext>()
@@ -29,7 +36,6 @@ namespace Codetecuico.Byns.Service.Test
 
             _itemController = new ItemController(new UserService(new UserRepository(inMemoryDbContext), new UnitOfWork(inMemoryDbContext)),
                                                     new ItemService(new ItemRepository(inMemoryDbContext), new UnitOfWork(inMemoryDbContext)));
-            AutoMapperConfiguration.Initialize();
         }
 
         private void SeedInMemoryDb(BynsDbContext dbContext)
@@ -41,7 +47,7 @@ namespace Codetecuico.Byns.Service.Test
             }
             if (!dbContext.Users.Any())
             {
-                dbContext.Users.AddRange(new User { Id = 1, Username = "TestUser1", ExternalId = "1" });
+                dbContext.Users.AddRange(new User { Id = 1, Username = "TestUser1", ExternalId = "google-oauth2|114343767643441344703" });
                 dbContext.SaveChanges();
             }
             if (!dbContext.Items.Any())
@@ -61,5 +67,27 @@ namespace Codetecuico.Byns.Service.Test
 
             Assert.AreEqual(3, page.Data.Count());
         }
+
+        [TestMethod]
+        public void UpdateItem()
+        {
+            //Arrange
+            var itemId = 1;
+            var itemName = "Item 1 - Updated";
+
+            var item = new ItemForUpdateModel()
+            {
+                Name = itemName,
+                Description = "Item Description 1 - Updated"
+            };
+
+            //Act
+            var result = _itemController.Update(itemId, item) as OkObjectResult;
+            var returnItem = (Item)result.Value;
+
+            //Assert
+            Assert.AreEqual(itemName, returnItem.Name);
+        }
+
     }
 }
