@@ -91,7 +91,7 @@ namespace Codetecuico.Byns.Api
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<BynsDbContext>();
-                context.Database.Migrate();
+                //context.Database.Migrate();
             }
         }
     }
