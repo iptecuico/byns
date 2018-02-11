@@ -69,6 +69,7 @@ namespace Codetecuico.Byns.Api.Controllers
             newItem.UserId = DbUser.Id;
             newItem.CreatedBy = DbUser.Id;
             newItem.ModifiedBy = DbUser.Id;
+            newItem.OrganizationId = DbUser.OrganizationId;
 
             newItem = _itemService.Add(newItem);
 
