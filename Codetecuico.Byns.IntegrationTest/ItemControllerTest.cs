@@ -5,13 +5,14 @@ using Codetecuico.Byns.Data;
 using Codetecuico.Byns.Data.Infrastructure;
 using Codetecuico.Byns.Data.Repositories;
 using Codetecuico.Byns.Domain;
+using Codetecuico.Byns.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
 
-namespace Codetecuico.Byns.Service.Test
+namespace Codetecuico.Byns.IntegrationTest
 {
     [TestClass]
     public class ItemControllerTest
@@ -60,16 +61,16 @@ namespace Codetecuico.Byns.Service.Test
         }
 
         [TestMethod]
-        public void GetItem()
+        public void GetItem_ReturnItems()
         {
             var result = _itemController.GetItems(1) as OkObjectResult;
             var page = (PagedModel<ItemModel>)result.Value;
 
-            Assert.AreEqual(3, page.Data.Count());
+            Assert.IsTrue(page.Data.Count() >= 2);
         }
 
         [TestMethod]
-        public void UpdateItem()
+        public void UpdateItem_ValidItem_ReturnOk()
         {
             //Arrange
             var userId = 1;
@@ -93,5 +94,51 @@ namespace Codetecuico.Byns.Service.Test
             Assert.AreEqual(userId, returnItem.UserId);
         }
 
+        [TestMethod]
+        public void UpdateItem_ValidItem_ReturnBadRequest()
+        {
+            //Arrange
+            var itemId = 0;
+            var itemName = "Item 1 - Updated";
+            var itemDescription = "Item Description 1 - Updated";
+
+            var item = new ItemForUpdateModel()
+            {
+                Name = itemName,
+                Description = itemDescription
+            };
+
+            //Act
+            var result = _itemController.Update(itemId, item);
+
+            //Assert
+            Assert.IsInstanceOfType(result, typeof(BadRequestObjectResult));
+        }
+
+        [TestMethod]
+        public void DeleteItem_ValidItemId_ReturnOk()
+        {
+            //Arrange
+            var itemId = 2;
+
+            //Act
+            var result = _itemController.Delete(itemId);
+
+            //Assert
+            Assert.IsInstanceOfType(result, typeof(OkResult));
+        }
+
+        [TestMethod]
+        public void DeleteItem_InvalidItemId_ReturnBadRequest()
+        {
+            //Arrange
+            var itemId = 0;
+
+            //Act
+            var result = _itemController.Delete(itemId);
+
+            //Assert
+            Assert.IsInstanceOfType(result, typeof(BadRequestObjectResult));
+        }
     }
 }

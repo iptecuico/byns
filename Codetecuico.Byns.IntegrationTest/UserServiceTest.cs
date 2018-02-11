@@ -6,8 +6,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System;
+using Codetecuico.Byns.Service;
 
-namespace Codetecuico.Byns.Service.Test
+namespace Codetecuico.Byns.IntegrationTest
 {
     [TestClass]
     public class UserServiceTest
