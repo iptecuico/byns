@@ -2,7 +2,6 @@
 using Codetecuico.Byns.Api.Helpers;
 using Codetecuico.Byns.Api.Models;
 using Codetecuico.Byns.Common.Core;
-using Codetecuico.Byns.Domain;
 using Codetecuico.Byns.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -66,10 +65,10 @@ namespace Codetecuico.Byns.Api.Controllers
             }
 
             var newItem = MapperHelper.Map(item);
-            newItem.UserId = DbUser.Id;
-            newItem.CreatedBy = DbUser.Id;
-            newItem.ModifiedBy = DbUser.Id;
-            newItem.OrganizationId = DbUser.OrganizationId;
+            newItem.UserId = CurrentUser.Id;
+            newItem.CreatedBy = CurrentUser.Id;
+            newItem.ModifiedBy = CurrentUser.Id;
+            newItem.OrganizationId = CurrentUser.OrganizationId;
 
             newItem = _itemService.Add(newItem);
 
@@ -93,7 +92,7 @@ namespace Codetecuico.Byns.Api.Controllers
 
             var originalItem = _itemService.GetById(id);
             if (ItemHelper.IsItemInvalid(originalItem)
-                || originalItem.UserId != DbUser.Id)
+                || originalItem.UserId != CurrentUser.Id)
             {
                 return BadRequest(Constants.Messages.UnauthorizeUpdate);
             }
@@ -106,7 +105,7 @@ namespace Codetecuico.Byns.Api.Controllers
             }
 
             var updatedItem = MapperHelper.Map(item, originalItem);
-            updatedItem.ModifiedBy = DbUser.Id;
+            updatedItem.ModifiedBy = CurrentUser.Id;
 
             var result = _itemService.Update(updatedItem);
 
@@ -129,7 +128,7 @@ namespace Codetecuico.Byns.Api.Controllers
 
             var item = _itemService.GetById(id);
             if (ItemHelper.IsItemInvalid(item)
-                || item.UserId != DbUser.Id)
+                || item.UserId != CurrentUser.Id)
             {
                 return BadRequest(Constants.Messages.UnauthorizeDelete);
             }

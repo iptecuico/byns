@@ -1,4 +1,6 @@
-﻿using Codetecuico.Byns.Domain;
+﻿using Codetecuico.Byns.Api.Helpers;
+using Codetecuico.Byns.Api.Models;
+using Codetecuico.Byns.Domain;
 using Codetecuico.Byns.Service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +10,7 @@ namespace Codetecuico.Byns.Api.Controllers
     {
         private readonly IUserService _userService;
         private User _dbUser;
+        private UserModel _dbUserModel;
 
         public BaseController()
         {
@@ -33,7 +36,7 @@ namespace Codetecuico.Byns.Api.Controllers
 
         internal bool IsValidUser()
         {
-            if (DbUser == null)
+            if (CurrentUserModel == null)
             {
                 return false;
             }
@@ -41,18 +44,31 @@ namespace Codetecuico.Byns.Api.Controllers
             return true;
         }
 
-        public User DbUser
+        public User CurrentUser
         {
             get
             {
                 if (_dbUser == null)
                 {
                     _dbUser = _userService.GetByExternalId(ClientId);
+                    _dbUserModel = MapperHelper.Map(_dbUser);
                 }
 
                 return _dbUser;
             }
         }
+        public UserModel CurrentUserModel
+        {
+            get
+            {
+                if (_dbUserModel == null)
+                {
+                    _dbUser = _userService.GetByExternalId(ClientId);
+                    _dbUserModel = MapperHelper.Map(_dbUser);
+                }
 
+                return _dbUserModel;
+            }
+        }
     }
 }
