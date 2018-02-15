@@ -59,5 +59,10 @@ namespace Codetecuico.Byns.Api.Helpers
             }
             return false;
         }
+
+        public static void SetItemCreatedInfo(Item item)
+        {
+            //
+        }
     }
 }
