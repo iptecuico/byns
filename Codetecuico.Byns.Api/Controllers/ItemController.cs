@@ -55,7 +55,7 @@ namespace Codetecuico.Byns.Api.Controllers
 
         [HttpPost]
         [ValidateUser]
-        public IActionResult Post([FromBody]ItemForCreationModel item)
+        public IActionResult Create([FromBody]ItemForCreationModel item)
         {
             if (!IsValidUser()
                 || !ModelState.IsValid

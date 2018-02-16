@@ -1,7 +1,7 @@
-﻿using Codetecuico.Byns.Api.Models;
-using AutoMapper;
-using System.Collections.Generic;
+﻿using AutoMapper;
+using Codetecuico.Byns.Api.Models;
 using Codetecuico.Byns.Domain;
+using System.Collections.Generic;
 using System;
 
 namespace Codetecuico.Byns.Api.Helpers
@@ -43,6 +43,11 @@ namespace Codetecuico.Byns.Api.Helpers
             return Mapper.Map(userModel, user);
         }
 
+        internal static User Map(UserForUpdateModel userModel, User user)
+        {
+            return Mapper.Map(userModel, user);
+        }
+
         internal static IEnumerable<UserModel> Map(IEnumerable<User> users)
         {
             return Mapper.Map<IEnumerable<User>, IEnumerable<UserModel>>(users);
@@ -56,6 +61,11 @@ namespace Codetecuico.Byns.Api.Helpers
         internal static Item Map(ItemForUpdateModel itemModel, Item item)
         {
             return Mapper.Map(itemModel, item);
+        }
+
+        internal static User Map(UserForCreationModel user)
+        {
+            return Mapper.Map<UserForCreationModel, User>(user);
         }
     }
 }

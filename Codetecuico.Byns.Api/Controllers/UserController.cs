@@ -69,7 +69,7 @@ namespace Codetecuico.Byns.Api.Controllers
         }
 
         [HttpGet("all")]
-        public IActionResult GetAll()
+        public IActionResult GetUsers()
         {
             var users = _userService.GetAll();
             var model = MapperHelper.Map(users);
@@ -77,8 +77,30 @@ namespace Codetecuico.Byns.Api.Controllers
             return Ok(model);
         }
 
+        [HttpPost]
+        public IActionResult Create([FromBody]UserForCreationModel userForCreationModel)
+        {
+            if (!ModelState.IsValid
+                || UserHelper.IsUserInvalid(userForCreationModel))
+            {
+                return BadRequest(Constants.Messages.InvalidRequest);
+            }
+
+            var user = MapperHelper.Map(userForCreationModel);
+            user = _userService.Add(user);
+
+            if (UserHelper.IsUserInvalid(user))
+            {
+                return BadRequest();
+            }
+
+            var model = MapperHelper.Map(user);
+
+            return Created(string.Empty, model);
+        }
+
         [HttpPut]
-        public IActionResult Update(int id, [FromBody]UserModel user)
+        public IActionResult Update(int id, [FromBody]UserForUpdateModel userForUpdateModel)
         {
             var currentUser = CurrentUser;
             if (!ModelState.IsValid
@@ -88,43 +110,23 @@ namespace Codetecuico.Byns.Api.Controllers
                 return BadRequest(Constants.Messages.InvalidRequest);
             }
 
-            if (currentUser.Id != id
-                || currentUser.Id != user.Id)
+            if (currentUser.Id != id)
             {
-                return BadRequest(Constants.Messages.UnauthorizeUpdate);
+                return Unauthorized();
             }
 
-            var model = MapperHelper.Map(user, currentUser);
-            var result = _userService.Update(model);
+            var user = MapperHelper.Map(userForUpdateModel, currentUser);
+            var result = _userService.Update(user);
 
             if (!result)
             {
                 return BadRequest();
             }
 
-            return Ok();
+            var userModel = MapperHelper.Map(user);
+
+            return Ok(userModel);
         }
 
-        [HttpPost]
-        public IActionResult Create([FromBody]UserModel user)
-        {
-            if (!ModelState.IsValid
-                || UserHelper.IsUserInvalid(user))
-            {
-                return BadRequest();
-            }
-
-            var model = MapperHelper.Map(user);
-            var returnUser = _userService.Add(model);
-
-            if (UserHelper.IsUserInvalid(returnUser))
-            {
-                return BadRequest();
-            }
-
-            var returnModel = MapperHelper.Map(returnUser);
-
-            return Created(string.Empty, returnModel);
-        }
     }
 }

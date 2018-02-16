@@ -23,6 +23,15 @@ namespace Codetecuico.Byns.Api.Helpers
             return false;
         }
 
+        public static bool IsUserInvalid(UserForCreationModel user)
+        {
+            if (user == null)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public static bool IsUserInvalid(int id)
         {
             if (id <= 0)

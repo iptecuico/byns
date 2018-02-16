@@ -14,6 +14,7 @@ namespace Codetecuico.Byns.Api.Mappings
                 .ForMember(to => to.Organization, from => from.Ignore());
             CreateMap<ItemForCreationModel, Item>();
             CreateMap<ItemForUpdateModel, Item>();
+            CreateMap<UserForCreationModel, User>();
             CreateMap<UserForUpdateModel, User>();
         }
     }

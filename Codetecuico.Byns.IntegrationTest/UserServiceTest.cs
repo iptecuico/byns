@@ -1,15 +1,10 @@
-﻿using Codetecuico.Byns.Data;
-using Codetecuico.Byns.Domain;
-using Codetecuico.Byns.Data.Infrastructure;
-using Codetecuico.Byns.Data.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Codetecuico.Byns.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
-using System;
-using Codetecuico.Byns.Service;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Codetecuico.Byns.IntegrationTest
 {
+    [ExcludeFromCodeCoverage]
     [TestClass]
     public class UserServiceTest
     {
@@ -17,33 +12,8 @@ namespace Codetecuico.Byns.IntegrationTest
 
         public UserServiceTest()
         {
-            var options = new DbContextOptionsBuilder<BynsDbContext>()
-                                .UseInMemoryDatabase("UnitTestDbUser")
-                                .Options;
-
-            var inMemoryDbContext = new BynsDbContext(options);
-            SeedInMemoryDb(inMemoryDbContext);
-
-            _userService = new UserService(new UserRepository(inMemoryDbContext),
-                                            new UnitOfWork(inMemoryDbContext));
-
-        }
-
-        private void SeedInMemoryDb(BynsDbContext dbContext)
-        {
-            if (!dbContext.Organizations.Any())
-            {
-                dbContext.Organizations.AddRange(new Organization { Id = new Guid("00000000-0000-0000-0000-000000000001"), Name = "Organization1" });
-                dbContext.SaveChanges();
-            }
-
-            if (!dbContext.Users.Any())
-            {
-                dbContext.Users.AddRange(new User { Id = 1, Username = "TestUser1", ExternalId = "1", OrganizationId = new Guid("00000000-0000-0000-0000-000000000001") }
-                                        , new User { Id = 2, Username = "TestUser2", ExternalId = "2", OrganizationId = new Guid("00000000-0000-0000-0000-000000000001") }
-                                        , new User { Id = 3, Username = "TestUser3", ExternalId = "3", OrganizationId = new Guid("00000000-0000-0000-0000-000000000001") });
-                dbContext.SaveChanges();
-            }
+            var dbContext = TestHelper.CreateInMemoryDbContext("UnitTestDbUser");
+            _userService = TestHelper.CreateUserService(dbContext);
         }
 
         [TestMethod]
@@ -52,10 +22,10 @@ namespace Codetecuico.Byns.IntegrationTest
             //Arrange
 
             //Act
-            var user = _userService.GetByExternalId("1");
+            var user = _userService.GetByExternalId("6");
 
             //Assert
-            Assert.AreEqual("TestUser1", user.Username);
+            Assert.AreEqual("TestUser6", user.Username);
         }
 
         [TestMethod]
@@ -64,27 +34,27 @@ namespace Codetecuico.Byns.IntegrationTest
             //Arrange
 
             //Act
-            var user = _userService.GetById(1);
+            var user = _userService.GetById(5);
 
             //Assert
-            Assert.AreEqual(1, user.Id);
-            Assert.AreEqual("TestUser1", user.Username);
+            Assert.AreEqual(5, user.Id);
+            Assert.AreEqual("TestUser5", user.Username);
         }
 
         [TestMethod]
         public void Update_ValidUser_ReturnTrue()
         {
             //Arrange
-            var user = _userService.GetById(2);
-            user.Username = "UpdatedTestUser2";
+            var user = _userService.GetById(6);
+            user.Username = "UpdatedTestUser6";
 
             //Act
             var result = _userService.Update(user);
-            var updateUser = _userService.GetById(2);
+            var updateUser = _userService.GetById(6);
 
             //Assert
             Assert.AreEqual(true, result);
-            Assert.AreEqual("UpdatedTestUser2", updateUser.Username);
+            Assert.AreEqual("UpdatedTestUser6", updateUser.Username);
         }
     }
 }
