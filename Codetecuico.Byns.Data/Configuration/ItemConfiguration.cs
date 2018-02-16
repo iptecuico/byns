@@ -8,7 +8,7 @@ namespace Codetecuico.Byns.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Item> builder)
         {
-            builder.ToTable("Items");
+            builder.ToTable("Item");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.Name).IsRequired().HasMaxLength(100);

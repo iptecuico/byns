@@ -21,6 +21,7 @@ namespace Codetecuico.Byns.Data
 
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Item> Items { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -28,6 +29,7 @@ namespace Codetecuico.Byns.Data
             modelBuilder.ApplyConfiguration(new OrganizationConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new ItemConfiguration());
+            modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
 
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {

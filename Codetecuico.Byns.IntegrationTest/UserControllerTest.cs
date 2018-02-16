@@ -45,7 +45,7 @@ namespace Codetecuico.Byns.IntegrationTest
             var list = (IEnumerable<UserModel>)result.Value;
 
             //Assert
-            Assert.AreEqual(list.Count(), 3);
+            Assert.IsTrue(list.Count() >= 3);
         }
 
         #endregion
