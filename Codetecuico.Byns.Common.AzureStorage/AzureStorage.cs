@@ -1,5 +1,5 @@
-﻿using Microsoft.WindowsAzure.Storage;
-using Microsoft.Azure;
+﻿//using Microsoft.WindowsAzure.Storage;
+//using Microsoft.Azure;
 
 namespace Codetecuico.Byns.Common.AzureStorage
 {
@@ -14,50 +14,50 @@ namespace Codetecuico.Byns.Common.AzureStorage
             _container = "byns";
         }
 
-        public bool Upload(string path)
-        {
-            // Retrieve storage account from connection string.
-            var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting(_connectionString));
+        //public bool Upload(string path)
+        //{
+        //    // Retrieve storage account from connection string.
+        //    var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting(_connectionString));
 
-            // Create the blob client.
-            var blobClient = storageAccount.CreateCloudBlobClient();
+        //    // Create the blob client.
+        //    var blobClient = storageAccount.CreateCloudBlobClient();
 
-            // Retrieve reference to a previously created container.
-            var container = blobClient.GetContainerReference(_container);
+        //    // Retrieve reference to a previously created container.
+        //    var container = blobClient.GetContainerReference(_container);
 
-            // Retrieve reference to a blob named "myblob".
-            var blockBlob = container.GetBlockBlobReference("ct.png");
+        //    // Retrieve reference to a blob named "myblob".
+        //    var blockBlob = container.GetBlockBlobReference("ct.png");
 
-            // Create or overwrite the "myblob" blob with contents from a local file.
-            using (var fileStream = System.IO.File.OpenRead(path))
-            {
-                blockBlob.UploadFromStream(fileStream);
-            }
+        //    // Create or overwrite the "myblob" blob with contents from a local file.
+        //    using (var fileStream = System.IO.File.OpenRead(path))
+        //    {
+        //        blockBlob.UploadFromStream(fileStream);
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
 
-        public bool Download()
-        {
-            // Retrieve storage account from connection string.
-            var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting(_connectionString));
+        //public bool Download()
+        //{
+        //    // Retrieve storage account from connection string.
+        //    var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting(_connectionString));
 
-            // Create the blob client.
-            var blobClient = storageAccount.CreateCloudBlobClient();
+        //    // Create the blob client.
+        //    var blobClient = storageAccount.CreateCloudBlobClient();
 
-            // Retrieve reference to a previously created container.
-            var container = blobClient.GetContainerReference(_container);
+        //    // Retrieve reference to a previously created container.
+        //    var container = blobClient.GetContainerReference(_container);
 
-            // Retrieve reference to a blob named "photo1.jpg".
-            var blockBlob = container.GetBlockBlobReference("xamarin.png");
+        //    // Retrieve reference to a blob named "photo1.jpg".
+        //    var blockBlob = container.GetBlockBlobReference("xamarin.png");
 
-            // Save blob contents to a file.
-            using (var fileStream = System.IO.File.OpenWrite(@"C:\Users\iptecuico\Downloads\xamarin.png"))
-            {
-                blockBlob.DownloadToStream(fileStream);
-            }
+        //    // Save blob contents to a file.
+        //    using (var fileStream = System.IO.File.OpenWrite(@"C:\Users\iptecuico\Downloads\xamarin.png"))
+        //    {
+        //        blockBlob.DownloadToStream(fileStream);
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
     }
 }

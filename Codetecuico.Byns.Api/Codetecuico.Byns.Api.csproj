@@ -15,7 +15,6 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Codetecuico.Byns.Common.AzureStorage\Codetecuico.Byns.Common.AzureStorage.csproj" />
     <ProjectReference Include="..\Codetecuico.Byns.Common.Core\Codetecuico.Byns.Common.Core.csproj" />
     <ProjectReference Include="..\Codetecuico.Byns.Data\Codetecuico.Byns.Data.csproj" />
     <ProjectReference Include="..\Codetecuico.Byns.Service\Codetecuico.Byns.Service.csproj" />
