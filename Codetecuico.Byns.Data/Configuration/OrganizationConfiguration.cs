@@ -11,7 +11,7 @@ namespace Codetecuico.Byns.Data.Configuration
             builder.ToTable("Organization");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd()
-                                        .HasDefaultValueSql("NEW Guid()");
+                                        .HasDefaultValueSql("NEWID()");
             builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
             //builder.HasMany(x => x.Users)
             //           .WithOne()

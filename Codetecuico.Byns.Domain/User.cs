@@ -17,7 +17,7 @@ namespace Codetecuico.Byns.Domain
         public string ExternalId { get; set; }
         public DateTime DateRegistered { get; set; }
         public Guid OrganizationId { get; set; }
-        public Guid UserRoleId { get; set; }
+        public int UserRoleId { get; set; }
 
         public virtual Organization Organization { get; set; }
         public UserRole UserRole { get; set; }
